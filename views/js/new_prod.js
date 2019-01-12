@@ -78,6 +78,12 @@ function add_product() {
     obj_for_seller['NAME'] = prod_name;
     obj_for_seller['QTY'] = qty;
     obj_for_seller['PRICE'] = prices;
+    //emptying feilds
+    document.getElementById("prod_name").value = null;
+    document.getElementById("qty").value = null;
+    document.getElementById("prices").value= null;
+    
+
 
     if (category == "Clothing" || category == "Footwear") {
         let gender = document.querySelector('input[name="gender"]:checked').value;
@@ -86,16 +92,23 @@ function add_product() {
         obj_for_seller['SIZE'] = size;
         obj_for_prod['GENDER'] = gender;
         obj_for_prod['SIZE'] = size;
+        document.getElementById("size").value = null;
     }
     else if (category == "Groceries") {
         let weight = document.getElementById('weight').value;
         obj_for_prod['WEIGHT'] = weight;
         obj_for_seller['WEIGHT'] = weight;
+        document.getElementById('weight').value = null;
     }
     else if (category == "Luggage") {
         let water_ressistance = document.querySelector('input[name="water_ressistance"]:checked').value;
+        let size = document.getElementById("size").value;
+        obj_for_seller['SIZE'] = size;
+        obj_for_prod['SIZE'] = size;
+
         obj_for_prod['WATER_RESSISTANT'] = water_ressistance;
         obj_for_seller['WATER_RESSISTANT'] = water_ressistance;
+        document.getElementById("size").value = null;
     }
     else if (category == "Books") {
 
@@ -137,7 +150,8 @@ function add_product() {
         obj_for_seller['URL'] = url;
         firebase.database().ref(userupdate).set(obj_for_seller);
         firebase.database().ref(produpdate).set(obj_for_prod);
-        // document.getElementById("prod_name").value = null;
+        document.getElementById("photo").value = null;
+        alert("file uploaded");        
         // document.getElementById("size").value = null;
         // document.getElementById("qty").value = null;
         // document.getElementById("prices").value = null;

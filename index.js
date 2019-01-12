@@ -66,6 +66,6 @@ app.get("/:id/logout",(req,res) => {
     
 });
 // PORT NUMBER
-app.listen(process.env.PORT || 8000,()=> {
+app.listen(process.env.PORT || 7000,()=> {
     console.log("listening");
 })
