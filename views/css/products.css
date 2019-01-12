@@ -1,0 +1,39 @@
+table{
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 300;
+    border:1px solid rgba(255,255,255,0.3);
+    text-align: center;
+}
+td,th{
+    padding: 10px;
+}
+tr{
+    padding: 4px;
+}
+.cat-select{
+    margin:2% 0;
+}
+.category{
+    text-align: center;
+    /* background-color: #ee8d51; */
+    line-height: 1.5em;
+}
+.product_values a{
+    text-decoration: none;
+    color: white;
+    padding: 8px;
+    outline: 0;
+}
+.product_values a:hover{
+    background-color: white;
+    color: #25b7c4;
+}
+.product_name{
+    /* background-color: #5aa396; */
+    color: white;
+}
+th{
+    background-color: rgba(255,255,255,0.3);
+} 

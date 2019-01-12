@@ -1,0 +1,63 @@
+<% include ./partials/header %>
+<link rel="stylesheet" href="../css/products.css">
+<!-- existing products section -->
+<div class="col-sm -8">
+<div class="cat-select">
+ <% var arr = [];%>   
+    <table class="seller_products">
+        <tr>
+            <th>NAME</th>
+            <th>QTY</th>
+            <th>SIZE</th>
+            <th>SEX</th>
+            <th>PRICE</th>
+            <th>IMAGE</th>
+            <th></th>
+        </tr>
+    <%for(var i in products){%>
+            
+            <tr>
+                <th class = "category" colspan="7">CATEGORY: <%=i%></th>
+            </tr>
+            <%for(var j in products[i] ){%>
+            <tr>
+                <td class = "product_name" ><%=j%></td>
+                <%for(var k in products[i][j] ){%>
+                    <%arr.push(products[i][j][k])%>  
+                    <%if(k =="url"){%> 
+                    <td class="product_values">
+                         <a href="<%=products[i][j][k]%>" target="_blank">View Image</a>
+                    </td>
+                    <%}%>
+                    <%if(k!="url"){%>
+                    <td class="product_values">
+                        <%=products[i][j][k]%>
+                    </td>
+                    <%}%>               
+            <%}%> 
+
+                    <td class="product_values"> <button onclick="update(<%-arr[0]%>)">Update</button></td>
+            </tr>
+            <%arr = []%>
+        <%}%>
+    <%}%>  
+    </table>
+
+</div>
+</div>
+<!-- new products section -->
+<div class="col-sm-2">
+   <button onclick="window.location.href ='/<%=seller.id%>/products/new'">Add new products</button>   
+</div> 
+<!-- closed row -->
+</div>
+<!-- closed container -->
+</div>
+<script>
+function update(qty){
+    console.log(qty);
+}
+    
+</script>
+</body>
+</html>
