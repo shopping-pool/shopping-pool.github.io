@@ -18,29 +18,28 @@ function try1() {
     // selct from div
     var addform = document.getElementById("form");
     //prod_name
-    var prod_name = '<form><label > Product Name</label><input type="text" id="prod_name" placeholder="(enter in the format Brand-producttype eg lotto-shoes) required"><br>';
+    var prod_name = '<form><label > Product Name</label><input type="text" id="prod_name" placeholder="(enter in the format Brand-producttype eg lotto-shoes)" required ><br>';
     //price and qty
-    var qty_price = '<label > Quantity</label><input type="text" id="qty" placeholder="Enter qty available for respective sizes/weights in same format eg 3,4,5" required><br><label>Prices</label><input type="text" id="prices" placeholder="Enter prices for respective sizes/weights in same format eg 300,400,500" required><br>';
+    var qty_price = '<label > Quantity</label><input type="text" id="qty" placeholder="Enter qty available for respective sizes/weights in same format eg 3,4,5" required ><br><label>Prices</label><input type="text" id="prices" placeholder="Enter prices for respective sizes/weights in same format eg 300,400,500" required ><br>';
     //image
-    var image = '<label >Product Image</label><input type="file" id = "photo" required><br>';
+    var image = '<label >Product Image</label><input type="file" id = "photo" required ><br>';
     //size
-    var size = '<label >Size</label><input type="text"  id="size" placeholder="Enter sizes available separated by comma" required><br>';
+    var size = '<label >Size</label><input type="text"  id="size" placeholder="Enter sizes available separated by comma" required ><br>';
     //gender
-    var gender = '<label >Gender</label><input type="radio" name="gender" value="male"> Male<input type="radio" name="gender" value="female"> Female<input type="radio" name="gender" value="both"> Both<br>';
+    var gender = '<label >Gender</label><input type="radio" name="gender" value="male" required > Male<input type="radio" name="gender" value="female"> Female<input type="radio" name="gender" value="both"> Both<br>';
     //color
-    var color = '<label >Color</label><input type="text"  id="color" placeholder="Enter colors available separated by comma" required><br>';
+    var color = '<label >Color</label><input type="text"  id="color" placeholder="Enter colors available separated by comma" required ><br>';
 
     //Material
-    var material = '<label >Material</label><input type="text"  id="material" placeholder="Material" required><br>';
+    var material = '<label >Material</label><input type="text"  id="material" placeholder="Material" required ><br>';
 
     // weight
     var weight = '<label >Weight</label><input type="text"  id="weight" placeholder="Enter weights available separated by comma" required><br>';
     //water ressistance
-    var water_ressistance = '<label >Water Ressistance</label><input type="radio" name="water_ressistance" value="yes"> Yes<input type="radio" name="water_ressistance" value="No"> No<br>';
+    var water_ressistance = '<label >Water Ressistance</label><input type="radio" name="water_ressistance" value="yes" required > Yes<input type="radio" name="water_ressistance" value="No"> No<br>';
     //edition
-    var edition = '<label >Edition</label><input type="radio" name="edition" value="hardcover"> hardcover<input type="radio" name="edition" value="paperback"> paperback<br>';
-    var submit = '<input type="button" onclick="add_product()" value="Submit"><form>'
-    addform.innerHTML = "";
+    var edition = '<label >Edition</label><input type="radio" name="edition" value="hardcover" required> hardcover<input type="radio" name="edition" value="paperback"> paperback<br>';
+    var submit = '<input type="button" onclick="add_product()" value="Submit"><form>';
 
     if (category == "empty")
         addform.innerHTML = "";
