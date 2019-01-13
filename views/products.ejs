@@ -5,7 +5,7 @@
 <div class="cat-select">
  <% var arr = [];%>   
     <table class="seller_products">
-        <tr>
+        <!-- <tr>
             <th>NAME</th>
             <th>QTY</th>
             <th>SIZE</th>
@@ -13,23 +13,28 @@
             <th>PRICE</th>
             <th>IMAGE</th>
             <th></th>
-        </tr>
+        </tr> -->
     <%for(var i in products){%>
             
             <tr>
                 <th class = "category" colspan="7">CATEGORY: <%=i%></th>
             </tr>
-            <%for(var j in products[i] ){%>
+            <tr colspan="7">
+                <%for(var j in products[i] ){%>
+                    <%for(var k in products[i][j] ){%>
+                     <th><%=k%></th>
+                    <%}%> 
+            </tr>
+            
             <tr>
-                <td class = "product_name" ><%=j%></td>
-                <%for(var k in products[i][j] ){%>
+            <%for(var k in products[i][j] ){%>
                     <%arr.push(products[i][j][k])%>  
-                    <%if(k =="url"){%> 
+                    <%if(k =="URL"){%> 
                     <td class="product_values">
                          <a href="<%=products[i][j][k]%>" target="_blank">View Image</a>
                     </td>
                     <%}%>
-                    <%if(k!="url"){%>
+                    <%if(k!="URL"){%>
                     <td class="product_values">
                         <%=products[i][j][k]%>
                     </td>
