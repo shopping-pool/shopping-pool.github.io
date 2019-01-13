@@ -57,6 +57,7 @@ function try1() {
 
 }
 function add_product() {
+    document.getElementById("overlay").style.display = "block";
     var category = document.getElementById("cat").value;
     var obj_for_seller = {};
     var obj_for_prod = {};
@@ -131,31 +132,12 @@ function add_product() {
     task.then( snap => snap.ref.getDownloadURL())
     .then(url => {
         console.log("hello");
-        // var obj = {
-        //     gender: gender,
-        //     avl_sizes: size,
-        //     avl_qty: qty,
-        //     prices: prices,
-        //     url: url
-        // }
-        // var seller_info = {
-        //     gender: gender,
-        //     avl_sizes: size,
-        //     avl_qty: qty,
-        //     prices: prices,
-        //     imageUrl: url,
-        //     sold_by:uid
-        // }
         obj_for_prod['URL'] = url;
         obj_for_seller['URL'] = url;
         firebase.database().ref(userupdate).set(obj_for_seller);
         firebase.database().ref(produpdate).set(obj_for_prod);
         document.getElementById("photo").value = null;
-        alert("file uploaded");        
-        // document.getElementById("size").value = null;
-        // document.getElementById("qty").value = null;
-        // document.getElementById("prices").value = null;
-        // document.getElementById("photo").value = null;    
+        document.getElementById("overlay").style.display = "none";        
         });
        
         
