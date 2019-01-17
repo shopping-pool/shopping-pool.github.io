@@ -1,17 +1,4 @@
-// function add_product(){
-//     let cat = document.getElementById("cat").value;
-//     let prod_name = document.getElementById("prod_name").value;
-//     let gender =  document.querySelector('input[name="gender"]:checked').value;
-//     let size = document.getElementById("size").value;
-//     let qty = document.getElementById("qty").value;
-//     let prices = document.getElementById("prices").value;
-//     let file = document.getElementById("photo").files[0];
-//     var uid = firebase.auth().currentUser.uid;
-//     var produpdate = "categories/" + cat + "/" + prod_name;
-//     var userupdate = "sellers/seller_wise/" + uid + "/" + cat + "/" + prod_name;
-//     // console.log(cat,prod_name,gender,size,qty,prices,file)
-    
-function try1() {
+   function try1() {
 
 
     var category = document.getElementById("cat").value;
@@ -46,7 +33,7 @@ function try1() {
 
 
     else if (category == "Clothing" || category == "Footwear")
-        addform.innerHTML = prod_name + gender + size + qty_price + image + submit;
+        addform.innerHTML = prod_name + gender + size + qty_price +color+ image + submit;
     else if (category == "Groceries")
         addform.innerHTML = prod_name + weight + qty_price + image + submit;
     else if (category == "Luggage")
@@ -88,10 +75,14 @@ function add_product() {
     if (category == "Clothing" || category == "Footwear") {
         let gender = document.querySelector('input[name="gender"]:checked').value;
         let size = document.getElementById("size").value;
+        let color = document.getElementById("color").value;
         obj_for_seller['GENDER'] = gender;
         obj_for_seller['SIZE'] = size;
+        obj_for_seller['COLOR'] = color;
+        obj_for_prod['COLOR'] = color;
         obj_for_prod['GENDER'] = gender;
         obj_for_prod['SIZE'] = size;
+        document.getElementById("color").value = null;
         document.getElementById("size").value = null;
     }
     else if (category == "Groceries") {

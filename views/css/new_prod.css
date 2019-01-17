@@ -11,6 +11,9 @@
   z-index: 2;
   cursor: wait;
 }
+#form{
+  margin: 2%;
+}
 
 /* form styling */
 form label.label{

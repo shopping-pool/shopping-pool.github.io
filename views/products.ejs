@@ -1,9 +1,11 @@
 <% include ./partials/header %>
 <link rel="stylesheet" href="../css/products.css">
 <!-- existing products section -->
-<div class="col-sm -8">
+<div class="col-sm-8">
 <div class="cat-select">
- <% var arr = [];%>   
+ <% var arr = [];%>  
+ <% var f=0%>
+ <% var len =0%> 
     <table class="seller_products">
         <!-- <tr>
             <th>NAME</th>
@@ -17,15 +19,22 @@
     <%for(var i in products){%>
             
             <tr>
-                <th class = "category" colspan="7">CATEGORY: <%=i%></th>
+                <th class = "category" colspan="8">CATEGORY: <%=i%></th>
             </tr>
             <tr colspan="7">
                 <%for(var j in products[i] ){%>
+                <%if(f==0){%>
                     <%for(var k in products[i][j] ){%>
-                     <th><%=k%></th>
+                        <th><%=k%></th>
+                     <%f=1%> 
+                     <%len+=1;%>                    
                     <%}%> 
+                    <%while(len!=8){%>
+                        <th></th>
+                        <%len+=1;%>
+                    <%}%>    
+                <%}%>
             </tr>
-            
             <tr>
             <%for(var k in products[i][j] ){%>
                     <%arr.push(products[i][j][k])%>  
@@ -40,11 +49,14 @@
                     </td>
                     <%}%>               
             <%}%> 
+            
 
                     <td class="product_values"> <button onclick="update(<%-arr[0]%>)">Update</button></td>
             </tr>
             <%arr = []%>
         <%}%>
+        <%f=0%>
+        <%len=0%>
     <%}%>  
     </table>
 

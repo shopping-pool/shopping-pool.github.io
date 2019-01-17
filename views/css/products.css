@@ -12,8 +12,11 @@ td,th{
 tr{
     padding: 4px;
 }
+.col-sm-8{
+    padding: 0;
+}
 .cat-select{
-    margin:2% 0;
+    margin:0;
 }
 .category{
     text-align: center;
