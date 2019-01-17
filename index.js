@@ -53,7 +53,11 @@ app.get("/:id/profile", (req, res) => {
 });
 
 app.get("/:id/logout",(req,res) => {
-    res.render("logout");
+    firebase.auth().signOut().then(function(){
+        res.redirect("/")
+    },(err)=>{
+        console.log(err);
+    })
     // firebase.auth().onAuthStateChanged(function (user) {
     //     if (user) {
     //         //console.log(user.uid);

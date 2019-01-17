@@ -26,8 +26,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         //console.log(user.uid);
         console.log("hello");
-        if(i==1)
-            window.location.href = user.uid;
+            
     } else {
         console.log("not signed in")
     }
@@ -35,11 +34,13 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 function e_login(email, password) {
     console.log("old user");
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    firebase.auth().signInWithEmailAndPassword(email, password).then((data) =>{
+        window.location.href = data.user.uid;
+    })
         .catch(function (error) {
             console.log(error);
         });
-        i=1;
+        
 }
 
 function e_signIn(name, email, password) {

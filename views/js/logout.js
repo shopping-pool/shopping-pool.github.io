@@ -1,4 +1,4 @@
 
 firebase.auth().signOut();
 if(firebase.auth().currentUser=== null){
-window.location.href=""};
+window.location.href="hell"};
