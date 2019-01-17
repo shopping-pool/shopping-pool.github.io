@@ -5,6 +5,7 @@ $(document).ready(function () {
 
     }, 100)
 });
+var i = 0;
 function whenclicked() {
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
@@ -25,7 +26,8 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         //console.log(user.uid);
         console.log("hello");
-        window.location.href = user.uid;
+        if(i==1)
+            window.location.href = user.uid;
     } else {
         console.log("not signed in")
     }
@@ -37,6 +39,7 @@ function e_login(email, password) {
         .catch(function (error) {
             console.log(error);
         });
+        i=1;
 }
 
 function e_signIn(name, email, password) {
@@ -45,9 +48,13 @@ function e_signIn(name, email, password) {
             firebase.database().ref('sellers/sellers-list/' + data.user.uid).set({
                 name: name,
                 email: email
+            },function(err){
+                if(err)
+                    console.log(err)
+                else 
+                    window.location.href = data.user.uid;    
             })
-            //console.log("new user");
-            window.location.href = data.user.uid;
+            
         })
         .catch((error) => {
             alert(error.message);

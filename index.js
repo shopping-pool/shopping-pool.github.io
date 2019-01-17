@@ -22,11 +22,11 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 // Main seller routes
 
 app.get("/:id",(req,res)=>{
-     id = req.params.id;
-    console.log(req.params.id);
+    id = req.params.id;
+    console.log(id);
     firebase.database().ref("sellers/sellers-list/"+id ).on('value',function(snap){
-         seller = snap.val();
-        seller.id = req.params.id;
+        seller = snap.val();
+        seller['id'] = id;
     console.log(seller);    
     res.render('temp', { seller: seller });
 })   
