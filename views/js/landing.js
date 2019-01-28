@@ -61,15 +61,3 @@ function e_signIn(name, email, password) {
             alert(error.message);
         });
 }
-//function e_logout() {
-//     if (inn == 1) {
-//         inn = 0;
-//         firebase.auth().signOut().then(function () {
-//             console.log('Signed Out');
-//         }, function (error) {
-//             console.error('Sign Out Error', error);
-//         });
-//     }
-//     else
-//         console.log("User already logged Out")
-// }

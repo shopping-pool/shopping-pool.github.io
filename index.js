@@ -51,25 +51,15 @@ app.get("/:id/sales", (req, res) => {
 app.get("/:id/profile", (req, res) => {
     res.render("profile",{seller:seller});
 });
-
+//logout
 app.get("/:id/logout",(req,res) => {
     firebase.auth().signOut().then(function(){
         res.redirect("/")
     },(err)=>{
         console.log(err);
-    })
-    // firebase.auth().onAuthStateChanged(function (user) {
-    //     if (user) {
-    //         //console.log(user.uid);
-    //         window.location.href = user.uid;
-    //     } else {
-            
-    //     }
-    // });
-    
-    
+    })   
 });
 // PORT NUMBER
 app.listen(process.env.PORT || 7000,()=> {
-    console.log("listening");
+    console.log("listening on 7000");
 })

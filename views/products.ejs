@@ -7,15 +7,6 @@
  <% var f=0%>
  <% var len =0%> 
     <table class="seller_products">
-        <!-- <tr>
-            <th>NAME</th>
-            <th>QTY</th>
-            <th>SIZE</th>
-            <th>SEX</th>
-            <th>PRICE</th>
-            <th>IMAGE</th>
-            <th></th>
-        </tr> -->
     <%for(var i in products){%>
             
             <tr>
@@ -23,9 +14,14 @@
             </tr>
             <tr colspan="7">
                 <%for(var j in products[i] ){%>
+                    <%for(var k in products[i][j] ){%>
+                    <%arr.push(k)%>
+                    <%}%>
+                    
                 <%if(f==0){%>
                     <%for(var k in products[i][j] ){%>
                         <th><%=k%></th>
+                        
                      <%f=1%> 
                      <%len+=1;%>                    
                     <%}%> 
@@ -51,7 +47,7 @@
             <%}%> 
             
 
-                    <td class="product_values"> <button onclick="update(<%-arr[0]%>)">Update</button></td>
+                    <td class="product_values"> <button onclick="update('<%-arr%>')">Update</button></td>
             </tr>
             <%arr = []%>
         <%}%>
@@ -72,7 +68,15 @@
 </div>
 <script>
 function update(qty){
-    console.log(qty);
+    
+    var object = {};
+    var res = qty.split(",");
+    console.log(res);
+    var len = res.length/2;
+    for(var i=0;i<len;i++){
+        object[res[i]] = res[i+len];
+    }
+    console.log(object);
 }
     
 </script>
