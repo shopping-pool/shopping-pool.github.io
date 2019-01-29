@@ -33,7 +33,7 @@
             </tr>
             <tr>
             <%for(var k in products[i][j] ){%>
-                    <%arr.push(products[i][j][k])%>  
+                    <%arr.push("a"+products[i][j][k])%>  
                     <%if(k =="URL"){%> 
                     <td class="product_values">
                          <a href="<%=products[i][j][k]%>" target="_blank">View Image</a>
@@ -72,6 +72,12 @@ function update(qty){
     var object = {};
     var res = qty.split(",");
     console.log(res);
+    var count = 0;
+    for(var i = 0;i<res.length;i++){
+        while(typeof(res(i))=="number")
+            count++;
+    }
+    if(count>3 && count <6)
     var len = res.length/2;
     for(var i=0;i<len;i++){
         object[res[i]] = res[i+len];
