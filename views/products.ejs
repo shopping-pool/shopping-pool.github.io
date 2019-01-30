@@ -15,7 +15,7 @@
             <tr colspan="7">
                 <%for(var j in products[i] ){%>
                     <%for(var k in products[i][j] ){%>
-                    <%arr.push(k)%>
+                    <%arr.push("k"+k)%>
                     <%}%>
                     
                 <%if(f==0){%>
@@ -67,22 +67,40 @@
 <!-- closed container -->
 </div>
 <script>
-function update(qty){
-    
+function update(product){
+    var localArrKeys = [];
+    var localArrVal = [];
     var object = {};
-    var res = qty.split(",");
-    console.log(res);
-    var count = 0;
-    for(var i = 0;i<res.length;i++){
-        while(typeof(res(i))=="number")
-            count++;
+    var separated = product.split(",");
+    // console.log(separated);
+    //storings keys in separated array
+    for(var i =0;i<separated.length;i++){
+        if(separated[i].charAt(0)=="k")
+            localArrKeys.push(separated[i].slice(1));    
     }
-    if(count>3 && count <6)
-    var len = res.length/2;
-    for(var i=0;i<len;i++){
-        object[res[i]] = res[i+len];
-    }
-    console.log(object);
+    //removing those keys from original array
+    for(var i=0;i<localArrKeys.length;i++)
+        separated.shift();
+    for(var i=0;i<separated.length;i++){
+        
+        if(separated[i].charAt(0)!="a"){
+            var j=i;
+            while(separated[j].charAt(0)!="a"){
+                separated[i-1]+= ","+separated[j];
+                separated.splice(j,1)
+            }
+
+        }
+        if (separated[i].charAt(0) == "a") {
+            separated[i] = separated[i].slice(1);
+        }
+    } 
+        for(var i=0;i<separated.length;i++)
+            object[localArrKeys[i]] = separated[i];
+        console.log(object);
+        
+         
+
 }
     
 </script>
