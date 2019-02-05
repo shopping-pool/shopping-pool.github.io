@@ -23,7 +23,7 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 
 app.get("/:id",(req,res)=>{
     id = req.params.id;
-    firebase.database().ref("sellers/sellers-list/"+id ).on('value',function(snap){
+    firebase.database().ref("sellers/sellers-list/"+id ).once('value',function(snap){
         seller = snap.val();
         seller['id'] = id;
     console.log(seller);    

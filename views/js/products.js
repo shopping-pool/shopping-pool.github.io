@@ -9,18 +9,28 @@ function update(product) {
     modal.style.display = "block";
     var text = "<form>";
     for (key in productObject) {
-        if (key != 'URL' && key!='CATEGORY')
+        if (key != 'URL' && key != 'CATEGORY' && key != 'NAME')
             text += '<label class = "tag">' + key + '</label><input type = "text" id ="' + key + '" value = "' + productObject[key] + '"><br>';
     }
     text += '<input type="button" onclick ="fireUpdate()" value ="Update"> <input type = "button" onclick = "cancel()" value ="Cancel"></form>';
     updateText.innerHTML = text;
 
 };
-
+function deleter(product) {
+    productObject = createObject(product);
+    var uid = firebase.auth().currentUser.uid;
+    var produpdate = "categories/" + productObject.CATEGORY + "/" + productObject.NAME;
+    var userupdate = "sellers/seller_wise/" + uid + "/" + productObject.CATEGORY + "/" + productObject.NAME;
+    firebase.database().ref().child(userupdate).set(null);
+    firebase.database().ref().child(produpdate).set(null, function (err) {
+        console.log("deleted");
+        location.reload();
+    })
+}
 function fireUpdate() {
     var localObj = {};
     for (key in productObject) {
-        if (key != 'URL'&& key != 'CATEGORY') {
+        if (key != 'URL' && key != 'CATEGORY' && key != 'NAME') {
             var changedVal = document.getElementById(key).value;
             if (changedVal != productObject[key])
                 localObj[key] = changedVal;
