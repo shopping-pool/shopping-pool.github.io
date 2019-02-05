@@ -31,9 +31,7 @@ function fireUpdate() {
     var userupdate = "sellers/seller_wise/" + uid + "/" + productObject.CATEGORY + "/" + productObject.NAME;
     firebase.database().ref().child(userupdate).update(localObj);
     firebase.database().ref().child(produpdate).update(localObj,function(err){
-        modal.style.display = "none";
-        //remove innerhtml also
-        document.getElementById('updateText').innerHTML = "";
+        console.log("updated");             
         location.reload();
     })
    

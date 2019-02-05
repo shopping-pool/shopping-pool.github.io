@@ -23,7 +23,6 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 
 app.get("/:id",(req,res)=>{
     id = req.params.id;
-    console.log(id);
     firebase.database().ref("sellers/sellers-list/"+id ).on('value',function(snap){
         seller = snap.val();
         seller['id'] = id;
@@ -33,12 +32,11 @@ app.get("/:id",(req,res)=>{
 });
 // product routes
 app.get("/:id/products", (req, res) => { 
-    firebase.database().ref("sellers/seller_wise/"+id).on('value',function(snap){
+    firebase.database().ref("sellers/seller_wise/"+req.params.id).once('value',function(snap){
         products = snap.val();
         res.render("products", { seller: seller, products: products});
 });
 app.get("/:id/products/new",(req,res) =>{
-    ;
         res.render("new_prod", { seller: seller});
     })
     
