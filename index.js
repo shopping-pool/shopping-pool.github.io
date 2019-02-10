@@ -47,7 +47,12 @@ app.get("/:id/sales", (req, res) => {
  });
 
 app.get("/:id/profile", (req, res) => {
-    res.render("profile",{seller:seller});
+    id = req.params.id;
+    firebase.database().ref("sellers/sellers-list/" + id).once('value', function (snap) {
+        seller = snap.val();
+        seller['id'] = id;
+        res.render("profile",{seller:seller});
+    })     
 });
 //logout
 app.get("/:id/logout",(req,res) => {

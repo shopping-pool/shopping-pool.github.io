@@ -6,9 +6,18 @@
 <table>
     <%for (var i in seller){%>
         <tr>
-            <%if(i!="id"){%>
-        <td><%=i.toUpperCase()%></td>
-        <td><%=seller[i]%></td>
+        <%if(i!="id"){%>
+            <%if(i == "location"){%>
+            <td>LATITUDE</td>
+            <td><%=seller[i]['lat']%></td>
+            <tr>
+            <td>LONGITUDE</td>
+            <td><%=seller[i]['lng']%></td>
+            </tr>
+            <%}else{%>    
+            <td><%=i.toUpperCase()%></td>
+            <td><%=seller[i]%></td>
+            <%}%>
         </tr>
     <%}%>   
     <%}%>   
@@ -18,7 +27,11 @@
     <button onclick="latlang()">add Currtent location as Shop Location</button>
     OR
     <button onclick="addinput()">Manually add address of shop</button>  
-<%}%>
+<%}else{%>
+    <button onclick="updatelatlng()">update Currtent location as Shop Location</button>
+    OR
+    <button onclick="updateinput()">Manually update address of shop</button>
+<%}%>    
     
 </div>
 <!-- closed row -->
