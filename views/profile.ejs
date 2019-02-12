@@ -3,35 +3,45 @@
 
 <div class="col-sm-10">
 <!-- profile information display -->
-<table>
+<table id>
     <%for (var i in seller){%>
         <tr>
         <%if(i!="id"){%>
             <%if(i == "location"){%>
-            <td>LATITUDE</td>
+            <td class="left">LATITUDE</td>
             <td><%=seller[i]['lat']%></td>
             <tr>
-            <td>LONGITUDE</td>
+            <td class="left">LONGITUDE</td>
             <td><%=seller[i]['lng']%></td>
             </tr>
             <%}else{%>    
-            <td><%=i.toUpperCase()%></td>
+            <td class="left"><%=i.toUpperCase()%></td>
             <td><%=seller[i]%></td>
             <%}%>
         </tr>
     <%}%>   
     <%}%>   
 </table>
-<div id = "add"></div>
+<%if(!('Shop-name' in seller) ){%>
+<div id="shop">
+    <input type="text" id="shopName" placeholder="Add shop name">
+    <button onclick="addShopName()">Add</button>
+</div>
+<%}%>
+<div id="add"></div>
 <%if(!('location' in seller) ){%>
+<div id="location">
     <button onclick="latlang()">add Currtent location as Shop Location</button>
     OR
-    <button onclick="addinput()">Manually add address of shop</button>  
-<%}else{%>
+    <button onclick="addinput()">Manually add address of shop</button>
+    <%}else{%>
     <button onclick="updatelatlng()">update Currtent location as Shop Location</button>
     OR
     <button onclick="updateinput()">Manually update address of shop</button>
-<%}%>    
+</div>
+<%}%>
+</div>
+
     
 </div>
 <!-- closed row -->

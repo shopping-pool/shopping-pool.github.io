@@ -1,0 +1,18 @@
+table{
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 300;
+    border:1px solid rgba(255,255,255,0.3);
+    text-align: center;
+}
+td,th{
+    padding: 10px;
+}
+tr{
+    padding: 4px;
+}
+
+table .left{
+    font-weight: 600;
+}

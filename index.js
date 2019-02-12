@@ -42,9 +42,22 @@ app.get("/:id/products/new",(req,res) =>{
     
 })
 
+//sales of a seller
+
 app.get("/:id/sales", (req, res) => {
     res.render("sales", { seller: seller });
- });
+});
+
+//discussion path for customers and sellers
+
+ app.get("/:id/queries", (req, res) => {
+    firebase.database().ref("Posts").once('value', function (snap){
+        var posts = snap.val();
+        res.render("queries", {posts:posts, seller: seller });
+    });
+});
+
+//sellers profile on the platform
 
 app.get("/:id/profile", (req, res) => {
     id = req.params.id;

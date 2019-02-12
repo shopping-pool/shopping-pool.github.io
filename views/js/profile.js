@@ -1,3 +1,17 @@
+function addShopName(){
+    var shopName = document.getElementById("shopName").value;
+    var id = firebase.auth().currentUser.uid;
+    var updateObj = "sellers/sellers-list/" + id;
+    if(shopName.length!=0)
+    {
+        firebase.database().ref(updateObj).update({
+            'Shop-name':shopName
+        },function(err){
+            console.log("updated");
+        })
+    }
+}
+
 async function geocode() {
     var add = document.getElementById("addi").value;
     add = add.split(" ").join("+");
@@ -20,7 +34,6 @@ async function updategeocode() {
     userDetailsJSON = await res.json();
     locObj = userDetailsJSON.results[0].geometry.location;
     document.getElementById('add').innerHTML = "";
-    console.log(locObj);
     updateLocation(locObj);
 }
 //adding input box for geocode
@@ -60,7 +73,6 @@ function addLocation(locObj){
     var id = firebase.auth().currentUser.uid;
     var updateObj = "sellers/sellers-list/"+id+"/location";
     firebase.database().ref().child(updateObj).set(locObj, function (err) {
-        console.log("updateds");
         location.reload();
     });
 }
@@ -68,7 +80,6 @@ function updateLocation(locObj) {
     var id = firebase.auth().currentUser.uid;
     var updateObj = "sellers/sellers-list/" + id + "/location";
     firebase.database().ref().child(updateObj).update(locObj,function(err){
-        console.log("updated");
         location.reload();
     });
 }
