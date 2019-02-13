@@ -59,7 +59,7 @@ app.get("/:id/sales", (req, res) => {
 
 //sellers profile on the platform
 
-app.get("/:id/profile", (req, res) => {
+app.get("/:id/profile", (req, res) => { 
     id = req.params.id;
     firebase.database().ref("sellers/sellers-list/" + id).once('value', function (snap) {
         seller = snap.val();

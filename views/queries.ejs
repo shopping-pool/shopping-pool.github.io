@@ -1,7 +1,48 @@
 <% include ./partials/header %>
 <link rel="stylesheet" href="../css/queries.css">
-<div class="col-sm-10">
-hrllo
+<div class="col-sm-6">
+<% var i = 1%>    
+<%for(var p in posts){%>
+       <div class="post">
+           <div class="frow">
+                <img class = "profilepic"src="<%=posts[p].profileimage%>" alt= "profileimage">
+                <div class="details">
+                    <%=posts[p].date%>   <%=posts[p].time%>
+                </div>
+            </div>
+            
+            <div class="description">
+                <%=posts[p].description%>
+            </div>
+            <div class="image">
+                <img  class ="postpic"src="<%=posts[p].postimage%>" alt="postimage">
+            </div>
+            <table id = "ctable<%=i%>" class="comments">
+                <%if('Comments' in posts[p]){%>
+                    <%for(var c in posts[p]['Comments']){%>
+                        <tr>
+                            <td>
+                            <div class="postComments">    
+                                <div class="comm">
+                                    <%=posts[p]['Comments'][c].username%> : <%=posts[p]['Comments'][c].comment%>
+                                </div>
+                                <div class="timedetails">
+                                    <%=posts[p]['Comments'][c].time%> <%=posts[p]['Comments'][c].date%>
+                                </div>
+                            </div>
+                            </td>
+                        </tr>
+                    <%}%>
+                    <!-- add input box -->
+                   
+                <%}%>
+                   
+            </table>
+            <input type="text" class="writeComment" id="input<%=i%>">
+            <button class = "addCmment" onclick="addComment(<%=i%>)">comment</button>
+       </div>
+    <%i++%>   
+<%}%>    
 </div>
 <!-- closed row -->
 </div>
