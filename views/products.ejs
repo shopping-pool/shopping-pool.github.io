@@ -19,7 +19,7 @@
  <% var len =0%> 
     <table class="seller_products">
     <%for(var i in products){%>
-            
+        <%if(i!='promoted'){%>    
             <tr>
                 <th class = "category" colspan="9">CATEGORY: <%=i%></th>
                 
@@ -67,6 +67,7 @@
         <%}%>
         <%f=0%>
         <%len=0%>
+        <%}%>
     <%}%>  
     </table>
 

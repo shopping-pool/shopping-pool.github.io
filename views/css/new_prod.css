@@ -20,5 +20,12 @@ form label.label{
 width : 30%;
 }
 .text{
-    width: 70%;
+    width: 65%;
+}
+.req{
+  color: red;
+  margin-left: 4px;
+}
+#infoBox{
+  margin: 20px 0;
 }
