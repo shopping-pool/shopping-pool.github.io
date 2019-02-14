@@ -47,7 +47,10 @@ app.get("/:id/products/new",(req,res) =>{
 app.get("/:id/sales", (req, res) => {
     res.render("sales", { seller: seller });
 });
-//placing ads or discount
+//placing classifieds
+app.get("/:id/classifieds", (req, res) => {
+    res.render("classifieds", { seller: seller });
+});
 
 
 //discussion path for customers and sellers

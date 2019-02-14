@@ -143,7 +143,6 @@ function add_product() {
         obj_for_seller['URL'] = url;
         
         if('DISCOUNT' in obj_for_prod || 'OFFER' in obj_for_prod){
-            alert("payment link has been generated");
         firebase.database().ref(promotedprod).set(obj_for_prod); 
         firebase.database().ref(promoteduser).set(obj_for_seller);   
         }else{
