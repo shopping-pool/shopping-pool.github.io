@@ -1,6 +1,75 @@
+<% include ./partials/header %>
+<link rel="stylesheet" href="../css/classifieds.css"> 
+
 <!-- posted jobs list  remove update-->
+<div class="col-sm-7">
+    <div class="list">
+        <h3>AD POSTINGS</h3>
+        <%if(advert==null){%>
+           <div>No current Ads to show</div> 
+        <%}else{%>
+            <%for(ad in advert){%>
+                
+                <div class="adPosts">
+                <img src="<%=advert[ad].URL%>" alt="ad image">
+                <span class="adDetails">posted on <%=advert[ad]['DATE']%> for a duration of <%=advert[ad].DURATION%> months.</span>
+                </div>
+            <%}%>
+        <%}%>   
+    </div>
+    <div class="list ">
+        <h3>JOB POSTINGS</h3>
+        <%if(job==null){%>
+            No current Vaccancies to show
+        <%}else{%>
+            <%for(jb in job){%>
+                <div class="jobPost">
+                    Post:<%=job[jb].POST%> <br>
+                    Expreience:<%=job[jb].EXPERIENCE%><br>
+                    Salary:<%=job[jb].SALARY%><br>
+                    Posted On: <%=job[jb].DATE%><br>
+                </div>
+            <%}%>    
+        <%}%>    
+    </div>
+</div>
+<div class="col-sm-3">
+    <div id="overlay"></div>
+    <div class="row add">  
+        <h3>ADD ADVERTISEMENT</h3>
+       <form >
+            <label class ="attributes">Duration <sup class="req">*</sup></label>
+            <input type="text"  id="duration" placeholder="number of months"><br>
+            <label class = "attributes">Upload Ad Banner<sup class="req">*</sup> </label> <input type="file" id = "bannerPic">
+            <input type="button" onclick="add_banner()" value="Submit">
+       </form>       
+       <div class="priceBox">
+           Advertisement price :500/month
+       </div>
+    </div>
+    <div class="row add">
+        <h3>ADD JOB VACCANCIES</h3>
+        <form >
+        <label class="attributes">Post <sup class="req">*</sup></label> <input type="text" id= "post"><br>
+        <label class="attributes">Salary-range <sup class="req">*</sup></label> <input type="text" id="salary"><br>
+        <label class="attributes">Expreience <sup class="req">*</sup></label> <input type="text" id="experience" placeholder="minm exp. req. in years"><br>
+        <input type="button" onclick="add_vaccancies()" value="Submit">
+        </form>
+    </div>
+</div>
 <!-- post a job vaccancy -->
 <!-- posted add list remove update-->
 <!-- post an ad -->
 <!-- fare details per month -->
 <!-- payment integration paynimo-->
+
+</div>
+<!-- closed row -->
+</div>
+<!-- closed container -->
+<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/classifieds.js"></script>
+</body>
+
+</html>

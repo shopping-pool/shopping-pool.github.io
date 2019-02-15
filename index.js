@@ -49,7 +49,15 @@ app.get("/:id/sales", (req, res) => {
 });
 //placing classifieds
 app.get("/:id/classifieds", (req, res) => {
-    res.render("classifieds", { seller: seller });
+    var id  = req.params.id;
+    firebase.database().ref("classifieds/advert/" + id).once('value', function (snap) {
+        firebase.database().ref("classifieds/job_vaccancies/" + id).once('value', function (snapi) {
+            var advert = snap.val();
+            var job = snapi.val();
+            console.log(advert);
+            res.render("classifieds", {seller: seller,advert:advert,job:job});
+        });
+    });
 });
 
 
