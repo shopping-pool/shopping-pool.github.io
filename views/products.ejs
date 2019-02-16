@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 <link rel="stylesheet" href="../css/products.css">
 <!-- existing products section -->
-<div class="col-sm-9">
+<div class="col-sm-8">
     <!-- update screen start -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
@@ -10,21 +10,86 @@
             <div id="updateText">
             </div>
         </div>
-    
     </div>
     <!-- update screen end -->
 <div class="cat-select">
  <% var arr = [];%>  
  <% var f=0%>
  <% var len =0%> 
-    <table class="seller_products">
+ 
+
+    <%if('promoted' in products){%> 
+        <table id ="info">
+            <tr>
+                <td class="pcolor"></td>
+                <td>PROMOTED PRODUCTS</td>
+            </tr>
+            <tr>
+                <td class="gcolor"></td>
+                <td>NON-PROMOTED</td>
+            </tr>
+        </table>
+        <%for(i in products['promoted']){%>
+        <table class="seller_products">
+            <tr>
+                <%temp = Object.keys(products['promoted'][i])[0]%>
+                <th class = "categor" colspan="<%=Object.keys(products['promoted'][i][temp]).length+2%>">CATEGORY: <%=i%></th>
+            </tr>
+            <tr>
+            <%for(var j in products['promoted'][i] ){%>
+                    <%arr.push(i)%>
+                    <%for(var k in products['promoted'][i][j] ){%>
+                    <%arr.push("k"+k)%>
+                    <%}%>
+                <%if(f==0){%>
+                    <%for(var k in products['promoted'][i][j] ){%>
+                    <th>
+                        <%=k%>
+                    </th>
+                    <%f=1%>
+                    <%len+=1;%>
+                    <%}%>
+                <%while(len!=Object.keys(products['promoted'][i][temp]).length+2){%>
+                    <th></th>
+                    <%len+=1;%>
+                    <%}%>
+                <%}%>
+                </tr>
+                <tr>
+                    <%for(var k in products['promoted'][i][j] ){%>
+                        <%arr.push("a"+products['promoted'][i][j][k])%>
+                        <%if(k =="URL"){%>
+                        <td class="product_values">
+                            <a href="<%=products['promoted'][i][j][k]%>" target="_blank">VIEW</a>
+                        </td>
+                        <%}%>
+                        <%if(k!="URL"){%>
+                        <td class="product_values">
+                            <%=products['promoted'][i][j][k]%>
+                        </td>
+                        <%}%>
+                    <%}%>
+                    <td class="product_values"> <button onclick="update('<%-arr%>')"><i class="fas fa-pencil-alt"></i></button></td>
+                    <td class="product_values"> <button onclick="deleter('<%-arr%>')"><i class="far fa-trash-alt"></i></button></td>
+                </tr>
+                <%arr = []%>
+            <%}%>
+            <%f=0%>
+            <%len=0%>
+        <%}%>
+        </table>
+    <%}%>
+    
+    <br>
+    
     <%for(var i in products){%>
+        <table class="seller_products">
         <%if(i!='promoted'){%>    
             <tr>
-                <th class = "category" colspan="9">CATEGORY: <%=i%></th>
-                
+                <%temp = Object.keys(products[i])[0]%>
+                <th class = "category" colspan="<%=Object.keys(products[i][temp]).length+2%>">CATEGORY: <%=i%></th>
             </tr>
-            <tr colspan="7">
+            <tr>
                 <%for(var j in products[i] ){%>
                     <%arr.push(i)%>
                     <%for(var k in products[i][j] ){%>
@@ -38,7 +103,7 @@
                      <%f=1%> 
                      <%len+=1;%>                    
                     <%}%> 
-                    <%while(len!=9){%>
+                    <%while(len!=Object.keys(products[i][temp]).length+2){%>
                         <th></th>
                         <%len+=1;%>
                     <%}%>    
@@ -49,7 +114,7 @@
                     <%arr.push("a"+products[i][j][k])%>  
                     <%if(k =="URL"){%> 
                     <td class="product_values">
-                         <a href="<%=products[i][j][k]%>" target="_blank">View Image</a>
+                         <a href="<%=products[i][j][k]%>" target="_blank">VIEW</a>
                     </td>
                     <%}%>
                     <%if(k!="URL"){%>
@@ -60,22 +125,23 @@
             <%}%> 
             
 
-                    <td class="product_values"> <button onclick="update('<%-arr%>')">Update</button></td>
-                    <td class="product_values"> <button onclick="deleter('<%-arr%>')">Delete</button></td>
+                    <td class="product_values"> <button onclick="update('<%-arr%>')"><i class="fas fa-pencil-alt"></i></button></td>
+                    <td class="product_values"> <button onclick="deleter('<%-arr%>')"><i class="far fa-trash-alt"></i></button></td>
             </tr>
             <%arr = []%>
         <%}%>
         <%f=0%>
         <%len=0%>
         <%}%>
-    <%}%>  
-    </table>
+        </table>
+    <%}%>
+    
 
 </div>
 </div>
 <!-- new products section -->
-<div class="col-sm-1">
-   <button onclick="window.location.href ='/<%=seller.id%>/products/new'">Add new products</button>   
+<div class="col-sm-2 "> 
+        <button id = "addNew" onclick="window.location.href ='/<%=seller.id%>/products/new'">Add new products</button>
 </div> 
 <!-- closed row -->
 </div>

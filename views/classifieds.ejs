@@ -9,7 +9,6 @@
            <div>No current Ads to show</div> 
         <%}else{%>
             <%for(ad in advert){%>
-                
                 <div class="adPosts">
                 <img src="<%=advert[ad].URL%>" alt="ad image">
                 <span class="adDetails">posted on <%=advert[ad]['DATE']%> for a duration of <%=advert[ad].DURATION%> months.</span>

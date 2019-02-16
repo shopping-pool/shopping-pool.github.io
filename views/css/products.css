@@ -1,4 +1,8 @@
+body{
+    
+}
 table{
+    transform: scale(.9);
     background: linear-gradient(to right, #25c481, #25b7c4);
     color: white;
     font-family: 'Roboto';
@@ -80,4 +84,55 @@ th{
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.product_values button {
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    color: white;
+}
+.product_values button:hover i{
+    color: black;
+}
+.seller_products{
+    border-radius: 10px;
+    margin: 20px auto;
+    
+}
+.promoted{
+    background: white;
+}
+.categor{
+    text-align: center;
+    background-color: #ee8d51;
+    line-height: 1.5em;
+    border-radius: 9px;
+
+}
+#info{
+    display: flex;
+    justify-content: flex-end;
+    background: white;
+    color: #000;
+    margin:10px;
+    
+}
+#info tr{
+    border: 2px solid black;
+}
+.pcolor{
+    height: 5px;
+    width: 5px;
+    background: #ee8d51;
+}
+.gcolor{
+    height: 5px;
+    width: 5px;
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    
+}
+#addNew{
+    margin: auto;
+    display: block;
 }
