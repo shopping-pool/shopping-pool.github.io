@@ -19,9 +19,7 @@
 
     //Material
        var material = '<label class = "label" >Material<sup class = "req">*</sup></label><input type="text" class = "text"  id="material" placeholder="Material" required ><br>';
-    //offer
-    var offer = '<label class = "label" >Offer</label><input type="text" class = "text"  id="offer" placeholder="Any Special offer on this product"><br>';
-    //discount
+    //discount    
     var discount = '<label class = "label" >Any Discount</label><input type="text" class = "text"  id="discount" placeholder="Any disount percentage"><br>';
     // weight
        var weight = '<label class = "label" >Weight<sup class = "req">*</sup></label><input type="text" class = "text"  id="weight" placeholder="Enter weights available separated by comma" required><br>';
@@ -36,13 +34,13 @@
 
 
     else if (category == "Clothing" || category == "Footwear")
-        addform.innerHTML = prod_name + gender + size + qty_price +color+ offer+discount+image + submit;
+        addform.innerHTML = prod_name + gender + size + qty_price +color+ discount+image + submit;
     else if (category == "Groceries")
-        addform.innerHTML = prod_name + weight + qty_price + offer + discount +image + submit;
+        addform.innerHTML = prod_name + weight + qty_price + discount +image + submit;
     else if (category == "Luggage")
-        addform.innerHTML = prod_name + water_ressistance + size + qty_price + offer + discount +image + submit;
+        addform.innerHTML = prod_name + water_ressistance + size + qty_price +  discount +image + submit;
     else if (category == "Books")
-        addform.innerHTML = prod_name + edition + qty_price + offer + discount +image + submit;
+        addform.innerHTML = prod_name + edition + qty_price + discount +image + submit;
 
 }
 function add_product() {
@@ -56,7 +54,6 @@ function add_product() {
     let qty = document.getElementById("qty").value;
     let prices = document.getElementById("prices").value;
     let file = document.getElementById("photo").files[0];
-    let offer = document.getElementById("offer").value;
     let discount = document.getElementById("discount").value;
     //firebase part
     var uid = firebase.auth().currentUser.uid;
@@ -72,10 +69,6 @@ function add_product() {
     obj_for_seller['NAME'] = prod_name;
     obj_for_seller['QTY'] = qty;
     obj_for_seller['PRICE'] = prices;
-    if(offer!=""){
-        obj_for_prod['OFFER'] = offer;
-        obj_for_seller['OFFER'] = offer;
-    }
     if (discount!= "") {
         obj_for_prod['DISCOUNT'] = discount;
         obj_for_seller['DISCOUNT'] = discount;
@@ -84,7 +77,6 @@ function add_product() {
     document.getElementById("prod_name").value = null;
     document.getElementById("qty").value = null;
     document.getElementById("prices").value= null;
-    document.getElementById("offer").value = null;
     document.getElementById("discount").value = null;
     
 
@@ -142,7 +134,7 @@ function add_product() {
         obj_for_prod['URL'] = url;
         obj_for_seller['URL'] = url;
         
-        if('DISCOUNT' in obj_for_prod || 'OFFER' in obj_for_prod){
+        if('DISCOUNT' in obj_for_prod ){
         firebase.database().ref(promotedprod).set(obj_for_prod); 
         firebase.database().ref(promoteduser).set(obj_for_seller);   
         }else{

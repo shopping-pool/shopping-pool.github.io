@@ -37,6 +37,7 @@
             </tr>
             <tr>
             <%for(var j in products['promoted'][i] ){%>
+                    <%arr.push("promoted")%>
                     <%arr.push(i)%>
                     <%for(var k in products['promoted'][i][j] ){%>
                     <%arr.push("k"+k)%>
