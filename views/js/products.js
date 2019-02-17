@@ -72,6 +72,8 @@ function fireUpdate() {
                 delete productObject['CATEGORY'];
                 localObj = productObject;
                 firebase.database().ref().child(userupdate).update(localObj, function (err) {
+                    //adding sold by attribute
+                    localObj['SOLD_BY'] = uid;
                     firebase.database().ref().child(produpdate).update(localObj, function (err) {
                         location.reload();
                     });
