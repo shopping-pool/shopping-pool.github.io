@@ -10,9 +10,9 @@ function update(product) {
     var text = "<form>";
     for (key in productObject) {
         if (key != 'URL' && key != 'CATEGORY' && key != 'NAME')
-            text += '<label class = "tag">' + key + '</label><input type = "text" id ="' + key + '" value = "' + productObject[key] + '"><br>';
+            text += '<label class = "tag">' + key + '</label><input type = "text" class ="modal-input" id ="' + key + '" value = "' + productObject[key] + '"><br>';
     }
-    text += '<input type="button" onclick ="fireUpdate()" value ="Update"> <input type = "button" onclick = "cancel()" value ="Cancel"></form>';
+    text += '<div class ="center"><input type="button" onclick ="fireUpdate()" value ="Update"> <input type = "button"  id = "cancel" onclick = "cancel()" value ="Cancel"></div></form>';
     updateText.innerHTML = text;
 
 };

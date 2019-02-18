@@ -133,6 +133,68 @@ th{
     
 }
 #addNew{
-    margin: auto;
+    margin-top: 13px;
+    border: 4px solid #ee8d51;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
     display: block;
+    position: relative;
+    text-transform: uppercase;
+    padding: 15px 10px;
+    box-shadow: 4px 4px #ba551e;
+    outline: none;
+    font-family: 'roboto';
+    font-weight: 300;
 }
+#addNew:hover{
+  box-shadow:
+    2px 2px #ba551e;
+  top:2px;
+  left:2px;
+  outline: none;
+}
+#addNew:active{
+  box-shadow:
+    none;
+  top:4px;
+  left:4px;
+  outline: none;;   
+}
+
+/* modal form*/
+form .tag{
+    width: 30%;
+    font-family: 'roboto';
+    font-weight: 300;
+}
+form .modal-input{
+    width: 60%;
+    font-family: 'roboto';
+    font-weight: 300;
+
+}
+.center{
+    text-align: center;
+}
+form input[type = "button"]{
+    border: none;
+    margin : 0 auto;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 20px 20px 0 0;
+    background: limegreen;
+}
+form input[type = "button"]:hover{
+    background: white;
+    color: limegreen; 
+}
+#cancel{
+    background: rgb(255, 72, 72);
+}
+#cancel:hover{
+    background: white;
+    color: red;
+}
+
