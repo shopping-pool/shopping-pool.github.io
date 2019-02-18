@@ -17,7 +17,12 @@
         <ul class="nav justify-content-end">
             <li class="nav-item">
                 <i class="fas fa-store-alt"></i>
+                <%if('Shop-name' in seller){%>
                 <%= seller['Shop-name'].toUpperCase()%>
+                <%}else{%>
+                    <%= seller['name'].toUpperCase()%>
+                <%}%>
+
             </li>
             <!-- <li class="nav-item">
                     <a class="nav-link " href="#">Contact Us</a>
