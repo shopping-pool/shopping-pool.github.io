@@ -3,6 +3,8 @@ var span = document.getElementsByClassName("close")[0];
 var updateText = document.getElementById('updateText');
 var productObject = {};
 var uid,produpdate,userupdate;
+
+
 function update(product) {
     productObject = createObject(product);
     //add innerhtml to updateText
@@ -16,16 +18,18 @@ function update(product) {
     updateText.innerHTML = text;
 
 };
+
+
 //function to delete product from db
 function deleter(product) {
     productObject = createObject(product);
     var uid = firebase.auth().currentUser.uid;
     //delete promoted project
     if('PRODUCT' in productObject){
-        var produpdate = "promoted_products/" + productObject.CATEGORY + "/" + productObject.NAME;
+        var produpdate = "promoted_products/" + productObject.CATEGORY + "/" + productObject.NAME+"_"+uid;
         var userupdate = "sellers/seller_wise/" + uid + "/promoted/" + productObject.CATEGORY + "/" + productObject.NAME;
     }else{
-        produpdate = "categories/" + productObject.CATEGORY + "/" + productObject.NAME;
+        produpdate = "categories/" + productObject.CATEGORY + "/" + productObject.NAME+"_"+uid;
         userupdate = "sellers/seller_wise/" + uid + "/" + productObject.CATEGORY + "/" + productObject.NAME;
     }
     firebase.database().ref().child(userupdate).set(null,function(err){
@@ -46,11 +50,11 @@ function fireUpdate() {
         }
     }
     var uid = firebase.auth().currentUser.uid;
-    var produpdate = "categories/" + productObject.CATEGORY + "/" + productObject.NAME;
+    var produpdate = "categories/" + productObject.CATEGORY + "/" + productObject.NAME+"_"+uid;
     var userupdate = "sellers/seller_wise/" + uid + "/" + productObject.CATEGORY + "/" + productObject.NAME;
     if('PRODUCT' in productObject  ){
         if (('DISCOUNT' in localObj && localObj['DISCOUNT'] != "" && localObj['DISCOUNT'] != 0 ) || !('DISCOUNT' in localObj )){
-            produpdate = "promoted_products/" + productObject.CATEGORY+ "/" + productObject.NAME;
+            produpdate = "promoted_products/" + productObject.CATEGORY+ "/" + productObject.NAME+"_"+uid;
             userupdate = "sellers/seller_wise/" + uid + "/promoted/" + productObject.CATEGORY + "/" + productObject.NAME;
             firebase.database().ref().child(userupdate).update(localObj,function(err){
             firebase.database().ref().child(produpdate).update(localObj, function (err) {
@@ -60,7 +64,7 @@ function fireUpdate() {
         }
         else{
             //remove from promoted section
-            deletepromotedproducts = "promoted_products/" + productObject.CATEGORY + "/" + productObject.NAME;
+            deletepromotedproducts = "promoted_products/" + productObject.CATEGORY + "/" + productObject.NAME+"_"+uid;
             deleteuserpromoted = "sellers/seller_wise/" + uid + "/promoted/" + productObject.CATEGORY + "/" + productObject.NAME;
             firebase.database().ref().child(deletepromotedproducts).set(null);
             firebase.database().ref().child(deleteuserpromoted).set(null,function(err){

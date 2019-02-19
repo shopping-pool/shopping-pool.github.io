@@ -57,9 +57,9 @@ function add_product() {
     let discount = document.getElementById("discount").value;
     //firebase part
     var uid = firebase.auth().currentUser.uid;
-    var promotedprod = "promoted_products/"+category+"/"+prod_name;
+    var promotedprod = "promoted_products/"+category+"/"+prod_name+"_"+uid;
     var promoteduser = "sellers/seller_wise/" + uid + "/promoted/" + category + "/" + prod_name;
-    var produpdate = "categories/" + category + "/" + prod_name;
+    var produpdate = "categories/" + category + "/" + prod_name+"_"+uid;
     var userupdate = "sellers/seller_wise/" + uid + "/" + category + "/" + prod_name;
     //category-based
     obj_for_prod['NAME'] = prod_name;
