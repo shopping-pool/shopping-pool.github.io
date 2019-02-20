@@ -4,55 +4,81 @@
 <!-- posted jobs list  remove update-->
 <div class="col-sm-7">
     <div class="list">
-        <h3>AD POSTINGS</h3>
+        <h4>AD POSTINGS</h4>
         <%if(advert==null){%>
            <div>No current Ads to show</div> 
         <%}else{%>
             <%for(ad in advert){%>
                 <div class="adPosts">
-                <img src="<%=advert[ad].URL%>" alt="ad image">
-                <span class="adDetails">posted on <%=advert[ad]['DATE']%> for a duration of <%=advert[ad].DURATION%> months.</span>
+                    <img src="<%=advert[ad].URL%>" alt="ad image">
+                    <div class="adDetails">
+                        <div><span class="header">POSTED :</span><%=advert[ad]['DATE']%></div>
+                        <div><span class="header">DURATION:</span><%=advert[ad].DURATION%> months</div>
+                    </div>
                 </div>
             <%}%>
         <%}%>   
     </div>
     <div class="list ">
-        <h3>JOB POSTINGS</h3>
+        <h4>JOB POSTINGS</h4>
         <%if(job==null){%>
-            No current Vaccancies to show
+            No current Vacancies to show
         <%}else{%>
+            <table id="jobHeader">
+                <tr>
+                    <th>Post</th>
+                    <th>Expreience</th>
+                    <th>Salary</th>
+                    <th>Positions</th>
+                    <th>Posted On</th>
+                </tr>
             <%for(jb in job){%>
-                <div class="jobPost">
-                    Post:<%=job[jb].POST%> <br>
-                    Expreience:<%=job[jb].EXPERIENCE%><br>
-                    Salary:<%=job[jb].SALARY%><br>
-                    Posted On: <%=job[jb].DATE%><br>
-                </div>
-            <%}%>    
+                <tr class="jobPost">
+                    <td><%=job[jb].POST%></td>
+                    <td><%=job[jb].EXPERIENCE%></td>
+                    <td><%=job[jb].SALARY%></td>
+                    <td><%=job[jb].POSTINGS%></td>
+                    <td><%=job[jb].DATE%></td>   
+                </tr>
+            <%}%>
+            </table>
         <%}%>    
     </div>
 </div>
 <div class="col-sm-3">
-    <div id="overlay"></div>
+    <div id="overlay">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
     <div class="row add">  
-        <h3>ADD ADVERTISEMENT</h3>
+        <h4>ADD ADVERTISEMENT</h4>
        <form >
             <label class ="attributes">Duration <sup class="req">*</sup></label>
             <input type="text"  id="duration" placeholder="number of months"><br>
             <label class = "attributes">Upload Ad Banner<sup class="req">*</sup> </label> <input type="file" id = "bannerPic">
-            <input type="button" onclick="add_banner()" value="Submit">
+            <div class="submitForm">
+                <input type="button" onclick="add_banner()" value="SUBMIT">
+            </div>
+            
        </form>       
        <div class="priceBox">
            Advertisement price :500/month
        </div>
     </div>
     <div class="row add">
-        <h3>ADD JOB VACCANCIES</h3>
+        <h4>ADD JOB VACANCIES</h4>
         <form >
         <label class="attributes">Post <sup class="req">*</sup></label> <input type="text" id= "post"><br>
         <label class="attributes">Salary-range <sup class="req">*</sup></label> <input type="text" id="salary"><br>
         <label class="attributes">Expreience <sup class="req">*</sup></label> <input type="text" id="experience" placeholder="minm exp. req. in years"><br>
-        <input type="button" onclick="add_vaccancies()" value="Submit">
+        <label class="attributes">Number of jobs <sup class="req">*</sup></label> <input type="text" id="positions" ><br>
+        <div class="submitForm">
+            <input type="button" onclick="add_vaccancies()" value="SUBMIT">
+        </div>
+        
         </form>
     </div>
 </div>

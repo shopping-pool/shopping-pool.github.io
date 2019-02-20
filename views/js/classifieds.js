@@ -36,10 +36,12 @@ function add_vaccancies(){
     jobObj['POST'] = document.getElementById("post").value;
     jobObj['EXPERIENCE'] = document.getElementById("experience").value;
     jobObj['SALARY'] = document.getElementById("salary").value;
+    jobObj['POSTINGS'] = document.getElementById("positions").value
     firebase.database().ref("classifieds/job_vaccancies/" + uid+"/"+key).set(jobObj,function(err){
         document.getElementById("post").value = null;
         document.getElementById("experience").value = null;
         document.getElementById("salary").value = null;
+        document.getElementById("positions").value = null;
         document.getElementById("overlay").style.display = "none";
         location.reload();
     })

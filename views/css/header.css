@@ -1,9 +1,14 @@
+body{
+    font-size: 14px;
+}
 .navbar{
     background-color: #ed7023;
     padding: .1rem 1rem;
 }
-.navbar-light .navbar-brand {
+.navbar-light .navbar-brand ,a{
     color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover{
     color: white;
@@ -14,6 +19,8 @@
 .nav-item{
     color: white;
     line-height: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 
@@ -51,3 +58,5 @@
     font-weight: bold;
     text-align: right;
 }
+.navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.navbar {max-height:60px !important}
