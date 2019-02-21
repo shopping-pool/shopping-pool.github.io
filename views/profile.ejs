@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 <link rel="stylesheet" href="../css/profile.css">
 
-<div class="col-sm-10">
+<div class="col-sm-6">
 <!-- profile information display -->
 <table >
     <%for (var i in seller){%>
@@ -25,21 +25,23 @@
 <%if(!('Shop-name' in seller) ){%>
 <div id="shop">
     <input type="text" id="shopName" placeholder="Add shop name">
-    <button onclick="addShopName()">Add</button>
+    <button class = "buttons" onclick="addShopName()">Add</button>
 </div>
 <%}%>
 <div id="add"></div>
-<%if(!('location' in seller) ){%>
+
 <div id="location">
-    <button onclick="latlang()">add Currtent location as Shop Location</button>
+    <%if(!('location' in seller) ){%>
+    <button class = "buttons" onclick="latlang()">Add Currtent location as Shop Location</button>
     OR
-    <button onclick="addinput()">Manually add address of shop</button>
+    <button class = "buttons" onclick="addinput()">Manually add address of shop</button>
     <%}else{%>
-    <button onclick="updatelatlng()">update Currtent location as Shop Location</button>
+    <button class = "buttons" onclick="updatelatlng()">Update currtent location as Shop Location</button>
     OR
-    <button onclick="updateinput()">Manually update address of shop</button>
+    <button class = "buttons" onclick="updateinput()">Manually update address of shop</button>
+    <%}%>
 </div>
-<%}%>
+
 </div>
 
     

@@ -62,11 +62,11 @@ async function updatelatlng() {
     
 }
 function addinput() {
-    var input = 'Address <input type="text" id = "addi"><button onclick ="geocode()">location</button>';
+    var input = 'Address <input type="text" id = "addi"> <button class ="buttons" onclick ="geocode()">Get location</button>';
     document.getElementById('add').innerHTML = input;
 }
 function updateinput() {
-    var input = 'Address <input type="text" id = "addi"><button onclick ="updategeocode()">location</button>';
+    var input = 'Address <input type="text" id = "addi"><button class ="buttons" onclick ="updategeocode()">Get location</button>';
     document.getElementById('add').innerHTML = input;
 }
 function addLocation(locObj){

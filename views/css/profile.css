@@ -5,6 +5,8 @@ table{
     font-weight: 300;
     border:1px solid rgba(255,255,255,0.3);
     text-align: center;
+    border-radius:8px;
+    margin: 15px auto;
 }
 td,th{
     padding: 10px;
@@ -15,4 +17,23 @@ tr{
 
 table .left{
     font-weight: 600;
+}
+#location{
+   text-align: center;
+   margin: 15px 0;
+}
+#add,#shop{
+    margin: 15px auto;
+    text-align: center;
+}
+.buttons{
+    padding: 8px 10px;
+    max-width: 200px;
+    border: none;
+    background: #ed7023;
+    border-radius: 8px;
+    color: white;
+    font-weight:300;
+    font-size: 16px;
+
 }
