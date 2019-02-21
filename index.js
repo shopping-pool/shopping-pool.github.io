@@ -68,7 +68,20 @@ app.get("/:id/classifieds", (req, res) => {
         res.render("queries", {posts:posts, seller: seller });
     });
 });
-
+//payment_portal
+app.get("/:id/payments",(req,res)=>{
+    id = req.params.id;
+    firebase.database().ref("classifieds/advert/" + id).once('value', function (snap) {
+        firebase.database().ref("classifieds/job_vaccancies/" + id).once('value', function (snapi) {
+            firebase.database().ref("sellers/seller_wise/"+id+"/promoted").once("value",function(snapin){
+                var promoted = snapin.val();
+                var advert = snap.val();
+                var job = snapi.val();
+            res.render("payments", { seller: seller, advert: advert, job: job,promoted:promoted });
+            });
+        });
+    }); 
+})
 //sellers profile on the platform
 
 app.get("/:id/profile", (req, res) => { 

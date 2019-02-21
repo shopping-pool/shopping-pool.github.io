@@ -1,0 +1,36 @@
+table{
+    width: 90%;
+    margin: 15px;
+    font-weight: 300;
+    text-transform: uppercase;
+    
+}
+#headings{
+    border-bottom: 3px solid teal;
+    color: white;
+    background: #27a68f;
+}
+th{
+    padding: 10px 4px;
+}
+td{
+    padding: 10px 0px;
+    padding-left: 8px;
+}
+#total{
+    border-top: 3px solid teal;
+    color: white;
+    background: #27a68f;
+    font-weight: 400;
+}
+#total td:first-child{
+    text-align: center;
+}
+#paypal{
+    text-align: center;
+    width: 100%;
+}
+#paypal-button-container{
+    max-width: 200px;
+    margin-left: 600px;
+}

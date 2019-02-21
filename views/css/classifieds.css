@@ -35,10 +35,10 @@ form{
     color: white;
 }
 .attributes{
-    width: 38%;
+    width: 39%;
 }
 form input[type = text], input[type = file]{
-    width: 60%;
+    width: 59%;
     margin-bottom: 10px;
     
 }
