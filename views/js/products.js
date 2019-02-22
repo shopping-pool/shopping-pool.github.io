@@ -14,7 +14,7 @@ function update(product) {
         if (key != 'URL' && key != 'CATEGORY' && key != 'NAME')
             text += '<label class = "tag">' + key + '</label><input type = "text" class ="modal-input" id ="' + key + '" value = "' + productObject[key] + '"><br>';
     }
-    text += '<div class ="center"><input type="button" onclick ="fireUpdate()" value ="Update"> <input type = "button"  id = "cancel" onclick = "cancel()" value ="Cancel"></div></form>';
+    text += '<div class ="center"><input type="button" onclick ="fireUpdate()" value ="Update"> <input type = "button"  id = "cancel" onclick = "canceli()" value ="Cancel"></div></form>';
     updateText.innerHTML = text;
 
 };
@@ -108,7 +108,7 @@ window.onclick = function (event) {
     }
 }
 //cancel button
-function cancel() {
+function canceli() {
     modal.style.display = "none";
     //remove innerhtml also
     document.getElementById('updateText').innerHTML = "";
