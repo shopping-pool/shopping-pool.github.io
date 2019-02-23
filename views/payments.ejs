@@ -3,11 +3,18 @@
     <%var nprom = 0%>
     <%var nad = 0%>
     <%var njob = 0%>
-    <%for(cat in promoted){%>
-    <%nprom +=Object.keys(promoted[cat]).length %>
-    <%}%>
-    <%nad = Object.keys(advert).length%>
-    <%njob = Object.keys(job).length%>
+    <%if(promoted!=null){%>
+      <%for(cat in promoted){%>
+      <%nprom +=Object.keys(promoted[cat]).length %>
+      <%}%>
+    <%}%>  
+    <%if(advert != null){%>
+      <%nad = Object.keys(advert).length%>
+    <%}%> 
+
+    <%if(job != null){%>
+      <%njob = Object.keys(job).length%>
+    <%}%>  
     <%var sum =njob*100 +nad*500 +nprom*100%>
 <div class="col-sm-8">
   <table >
@@ -33,7 +40,7 @@
       <td>Advertisements</td>
       <td><%=nad%></td>
       <td>500</td>
-      <td><%=nprom*500%></td>
+      <td><%=nad*500%></td>
     </tr>
     <tr id = "total">
       <td colspan="3"> Total</td>

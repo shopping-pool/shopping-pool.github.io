@@ -12,14 +12,14 @@
         </div>
     </div>
     <!-- update screen end -->
-<div class="cat-select">
- <% var arr = [];%>  
- <% var f=0%>
- <% var len =0%> 
- 
+    <div class="cat-select">
+        <% var arr = [];%>
+        <% var f=0%>
+        <% var len =0%>
 
-    <%if('promoted' in products){%> 
-        <table id ="info">
+
+        <%if('promoted' in products){%>
+        <table id="info">
             <tr>
                 <td class="pcolor"></td>
                 <td>PROMOTED PRODUCTS</td>
@@ -33,117 +33,131 @@
         <table class="seller_products">
             <tr>
                 <%temp = Object.keys(products['promoted'][i])[0]%>
-                <th class = "categor" colspan="<%=Object.keys(products['promoted'][i][temp]).length+2%>">CATEGORY: <%=i%></th>
+                <th class="categor" colspan="<%=Object.keys(products['promoted'][i][temp]).length+2%>">CATEGORY:
+                    <%=i%>
+                </th>
             </tr>
             <tr>
-            <%for(var j in products['promoted'][i] ){%>
-                    <%arr.push("promoted")%>
-                    <%arr.push(i)%>
-                    <%for(var k in products['promoted'][i][j] ){%>
-                    <%arr.push("k"+k)%>
-                    <%}%>
-                <%if(f==0){%>
-                    <%for(var k in products['promoted'][i][j] ){%>
-                    <th>
-                        <%=k%>
-                    </th>
-                    <%f=1%>
-                    <%len+=1;%>
-                    <%}%>
-                <%while(len!=Object.keys(products['promoted'][i][temp]).length+2){%>
-                    <th></th>
-                    <%len+=1;%>
-                    <%}%>
+                <%for(var j in products['promoted'][i] ){%>
+                <%arr.push("promoted")%>
+                <%arr.push(i)%>
+                <%for(var k in products['promoted'][i][j] ){%>
+                <%arr.push("k"+k)%>
                 <%}%>
-                </tr>
-                <tr>
-                    <%for(var k in products['promoted'][i][j] ){%>
-                        <%arr.push("a"+products['promoted'][i][j][k])%>
-                        <%if(k =="URL"){%>
-                        <td class="product_values">
-                            <a href="<%=products['promoted'][i][j][k]%>" target="_blank">VIEW</a>
-                        </td>
-                        <%}%>
-                        <%if(k!="URL"){%>
-                        <td class="product_values">
-                            <%=products['promoted'][i][j][k]%>
-                        </td>
-                        <%}%>
-                    <%}%>
-                    <td class="product_values"> <button onclick="update('<%-arr%>')"><i class="fas fa-pencil-alt"></i></button></td>
-                    <td class="product_values"> <button onclick="deleter('<%-arr%>')"><i class="far fa-trash-alt"></i></button></td>
-                </tr>
-                <%arr = []%>
+                <%if(f==0){%>
+                <%for(var k in products['promoted'][i][j] ){%>
+                <th>
+                    <%=k%>
+                </th>
+                <%f=1%>
+                <%len+=1;%>
+                <%}%>
+                <%while(len!=Object.keys(products['promoted'][i][temp]).length+2){%>
+                <th></th>
+                <%len+=1;%>
+                <%}%>
+                <%}%>
+            </tr>
+            <tr>
+                <%for(var k in products['promoted'][i][j] ){%>
+                <%arr.push("a"+products['promoted'][i][j][k])%>
+                <%if(k =="URL"){%>
+                <td class="product_values">
+                    <a href="<%=products['promoted'][i][j][k]%>" target="_blank">VIEW</a>
+                </td>
+                <%}%>
+                <%if(k!="URL"){%>
+                <td class="product_values">
+                    <%=products['promoted'][i][j][k]%>
+                </td>
+                <%}%>
+                <%}%>
+                <%for(var p in arr){%>
+                <%if(arr[p].indexOf('\'') >= 0){%>
+                <%arr[p] = arr[p].replace(arr[p][arr[p].indexOf('\'')],'')%>
+                <%}%>
+                <%}%>
+                <td class="product_values"> <button onclick="update('<%-arr%>')"><i class="fas fa-pencil-alt"></i></button></td>
+                <td class="product_values"> <button onclick="deleter('<%-arr%>')"><i class="far fa-trash-alt"></i></button></td>
+            </tr>
+            <%arr = []%>
             <%}%>
             <%f=0%>
             <%len=0%>
-        <%}%>
+            <%}%>
         </table>
-    <%}%>
-    
-    <br>
-    
-    <%for(var i in products){%>
+        <%}%>
+
+        <br>
+
+        <%for(var i in products){%>
         <table class="seller_products">
-        <%if(i!='promoted'){%>    
+            <%if(i!='promoted'){%>
             <tr>
                 <%temp = Object.keys(products[i])[0]%>
-                <th class = "category" colspan="<%=Object.keys(products[i][temp]).length+2%>">CATEGORY: <%=i%></th>
+                <th class="category" colspan="<%=Object.keys(products[i][temp]).length+2%>">CATEGORY:
+                    <%=i%>
+                </th>
             </tr>
             <tr>
                 <%for(var j in products[i] ){%>
-                    <%arr.push(i)%>
-                    <%for(var k in products[i][j] ){%>
-                    <%arr.push("k"+k)%>
-                    <%}%>
-                    
+                <%arr.push(i)%>
+                <%for(var k in products[i][j] ){%>
+                <%arr.push("k"+k)%>
+                <%}%>
+
                 <%if(f==0){%>
-                    <%for(var k in products[i][j] ){%>
-                        <th><%=k%></th>
-                        
-                     <%f=1%> 
-                     <%len+=1;%>                    
-                    <%}%> 
-                    <%while(len!=Object.keys(products[i][temp]).length+2){%>
-                        <th></th>
-                        <%len+=1;%>
-                    <%}%>    
+                <%for(var k in products[i][j] ){%>
+                <th>
+                    <%=k%>
+                </th>
+
+                <%f=1%>
+                <%len+=1;%>
+                <%}%>
+                <%while(len!=Object.keys(products[i][temp]).length+2){%>
+                <th></th>
+                <%len+=1;%>
+                <%}%>
                 <%}%>
             </tr>
             <tr>
-            <%for(var k in products[i][j] ){%>
-                    <%arr.push("a"+products[i][j][k])%>  
-                    <%if(k =="URL"){%> 
-                    <td class="product_values">
-                         <a href="<%=products[i][j][k]%>" target="_blank">VIEW</a>
-                    </td>
-                    <%}%>
-                    <%if(k!="URL"){%>
-                    <td class="product_values">
-                        <%=products[i][j][k]%>
-                    </td>
-                    <%}%>               
-            <%}%> 
-            
-
-                    <td class="product_values"> <button onclick="update('<%-arr%>')"><i class="fas fa-pencil-alt"></i></button></td>
-                    <td class="product_values"> <button onclick="deleter('<%-arr%>')"><i class="far fa-trash-alt"></i></button></td>
+                <%for(var k in products[i][j] ){%>
+                <%arr.push("a"+products[i][j][k])%>
+                <%if(k =="URL"){%>
+                <td class="product_values">
+                    <a href="<%=products[i][j][k]%>" target="_blank">VIEW</a>
+                </td>
+                <%}%>
+                <%if(k!="URL"){%>
+                <td class="product_values">
+                    <%=products[i][j][k]%>
+                </td>
+                <%}%>
+                <%}%>
+                <%for(var p in arr){%>
+                <%if(arr[p].indexOf('\'') >= 0){%>
+                <%arr[p] = arr[p].replace(arr[p][arr[p].indexOf('\'')],'')%>
+                <%}%>
+                <%}%>
+                <td class="product_values"> <button onclick="update('<%-arr%>')"><i class="fas fa-pencil-alt"></i></button></td>
+                <td class="product_values"> <button onclick="deleter('<%-arr%>')"><i class="far fa-trash-alt"></i></button></td>
             </tr>
             <%arr = []%>
-        <%}%>
-        <%f=0%>
-        <%len=0%>
-        <%}%>
+            <%}%>
+            <%f=0%>
+            <%len=0%>
+            <%}%>
         </table>
-    <%}%>
-    
+        <%}%>
 
-</div>
+
+    </div>
 </div>
 <!-- new products section -->
-<div class="col-sm-2 "> 
-        <button id = "addNew" onclick="window.location.href ='/<%=seller.id%>/products/new'">Add new products</button>
-</div> 
+<div class="col-sm-2 ">
+    <button id="addNew" onclick="window.location.href ='/<%=seller.id%>/products/new'">Add new products</button>
+</div>
 <!-- closed row -->
 </div>
 <!-- closed container -->
@@ -152,4 +166,5 @@
 <script src="../js/auth.js"></script>
 <script src="../js/products.js"></script>
 </body>
+
 </html>

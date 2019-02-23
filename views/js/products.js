@@ -11,7 +11,7 @@ function update(product) {
     modal.style.display = "block";
     var text = "<form>";
     for (key in productObject) {
-        if (key != 'URL' && key != 'CATEGORY' && key != 'NAME')
+        if (key != 'URL' && key != 'CATEGORY' && key != 'NAME' && key !='PRODUCT')
             text += '<label class = "tag">' + key + '</label><input type = "text" class ="modal-input" id ="' + key + '" value = "' + productObject[key] + '"><br>';
     }
     text += '<div class ="center"><input type="button" onclick ="fireUpdate()" value ="Update"> <input type = "button"  id = "cancel" onclick = "canceli()" value ="Cancel"></div></form>';
@@ -119,8 +119,6 @@ function createObject(productArray) {
     var localArrVal = [];
     var object = {};
     var separated = productArray.split(",");
-    // console.log(separated);
-    //storings keys in separated array
     if(separated[0]=="promoted"){
         object['PRODUCT'] = separated.shift();
     }
@@ -134,15 +132,15 @@ function createObject(productArray) {
         separated.shift();
     for (var i = 0; i < separated.length; i++) {
 
-        if (separated[i].charAt(0) != "a") {
+        if (separated[i] != null && separated[i].charAt(0) != "a") {
             var j = i;
-            while (separated[j].charAt(0) != "a") {
+            while (separated[j] != null && separated[j].charAt(0) != "a" )  {
                 separated[i - 1] += "," + separated[j];
                 separated.splice(j, 1)
             }
 
         }
-        if (separated[i].charAt(0) == "a") {
+        if (separated[i] != null && separated[i].charAt(0) == "a") {
             separated[i] = separated[i].slice(1);
         }
     }
