@@ -1,4 +1,5 @@
 function Sold(prodName,buyerId,cat){
+    document.getElementById("overlay").style.display = "block";
     var uid = firebase.auth().currentUser.uid;
     //read the product data from booking/uid/category/buyerId/prodname
     // remove the product from there and add the product to sales/seller-wise/uid/category/prodname
@@ -17,6 +18,7 @@ function Sold(prodName,buyerId,cat){
                 delete userObj['Amount_to_pay'];
                 firebase.database().ref("sales/buyer_wise/" + buyerId + "/" + prodName).set(userObj, function (err) {
                     firebase.database().ref("Booked_Products/" + buyerId + "/" + prodName).set(null,function(err){
+                        document.getElementById("overlay").style.display = "none";
                         alert("product successfully added to sales");
                         location.reload();
                     });
@@ -28,6 +30,7 @@ function Sold(prodName,buyerId,cat){
 }
 
 function notSold(prodName, buyerId, cat) {
+    document.getElementById("overlay").style.display = "block";
     var uid = firebase.auth().currentUser.uid;
     //get the qty,size weight
     firebase.database().ref("Booking/" + uid + "/" + cat + "/" + buyerId + "/" + prodName).once('value', function (snap) {
@@ -36,6 +39,7 @@ function notSold(prodName, buyerId, cat) {
         if('PROMOTED' in bookedObj){
             var sellerStore = "sellers/seller_wise/" + uid + "/promoted/" + cat + "/" + bookedObj['NAME'];
             var prodStore = "promoted_products/" + cat + "/" + bookedObj['NAME'] + "_" + uid;
+            var sellerNotSold = "sales/seller_wise/"+uid+"/not_Sold/"+cat+"/"+prodName;
         } else {
             var sellerStore = "sellers/seller_wise/" + uid + "/" + cat + "/" + bookedObj['NAME'];
             var prodStore = "categories/" + cat + "/" + bookedObj['NAME'] + "_" + uid;
@@ -78,9 +82,12 @@ function notSold(prodName, buyerId, cat) {
             var sizeObj = { 'QTY': sizestring }
             firebase.database().ref(sellerStore).update(sizeObj, function (err) {
                 firebase.database().ref(prodStore).update(sizeObj, function (err) {
-                    firebase.database().ref("Booking/" + uid + "/" + cat + "/" + buyerId + "/" + prodName).set(null, function (err) {
-                        alert("product removed from bookings");
-                        location.reload();
+                    firebase.database().ref(sellerNotSold).set(bookedObj,function(err){
+                        firebase.database().ref("Booking/" + uid + "/" + cat + "/" + buyerId + "/" + prodName).set(null, function (err) {
+                            document.getElementById("overlay").style.display = "none";
+                            alert("product removed from bookings");
+                            location.reload();
+                        })
                     })
 
                 })
