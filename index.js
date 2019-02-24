@@ -48,9 +48,12 @@ app.get("/:id/products/new",(req,res) =>{
 })
 
 //sales of a seller
-
 app.get("/:id/sales", (req, res) => {
-    res.render("sales", { seller: seller });
+    id = req.params.id;
+    firebase.database().ref("sales/seller_wise/"+id).once('value',function(snap){
+        var sales = snap.val();
+        res.render("sales", { seller: seller ,sales:sales});
+    });    
 });
 //placing classifieds
 app.get("/:id/classifieds", (req, res) => {

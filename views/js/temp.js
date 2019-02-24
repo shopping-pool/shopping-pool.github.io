@@ -36,14 +36,15 @@ function notSold(prodName, buyerId, cat) {
     firebase.database().ref("Booking/" + uid + "/" + cat + "/" + buyerId + "/" + prodName).once('value', function (snap) {
         bookedObj = snap.val();
         //console.log(bookedObj);
-        if('PROMOTED' in bookedObj){
+        if(bookedObj['PROMOTED']=='YES'){
             var sellerStore = "sellers/seller_wise/" + uid + "/promoted/" + cat + "/" + bookedObj['NAME'];
             var prodStore = "promoted_products/" + cat + "/" + bookedObj['NAME'] + "_" + uid;
-            var sellerNotSold = "sales/seller_wise/"+uid+"/not_Sold/"+cat+"/"+prodName;
+           
         } else {
             var sellerStore = "sellers/seller_wise/" + uid + "/" + cat + "/" + bookedObj['NAME'];
             var prodStore = "categories/" + cat + "/" + bookedObj['NAME'] + "_" + uid;
         }
+        var sellerNotSold = "sales/seller_wise/" + uid + "/not_Sold/" + cat + "/" + prodName;
         var bookedQtyArr = bookedObj['QTY'].split(',');
         if (cat == 'Clothing' || cat == 'Footwear' || cat == 'Luggage') {
             bookedSizeArr = bookedObj['SIZE'].split(',');
@@ -84,7 +85,7 @@ function notSold(prodName, buyerId, cat) {
             firebase.database().ref(sellerStore).update(sizeObj, function (err) {
                 //update count global stock
                 firebase.database().ref(prodStore).update(sizeObj, function (err) {
-                    //put obj as nold Sold in sales
+                    //put obj as not Sold in sales
                     firebase.database().ref(sellerNotSold).set(bookedObj,function(err){
                         //remove the obj from booking tab
                         firebase.database().ref("Booking/" + uid + "/" + cat + "/" + buyerId + "/" + prodName).set(null, function (err) {
