@@ -7,18 +7,47 @@
         <div class="bounce3"></div>
     </div>
 </div>
-<div id = "showBookings">
+<div id = "showBookings" class ="col-sm-10">
     <%for(cat in bookedProducts){%>
         <%for(itr in bookedProducts[cat]){%>
             <%for(prod in bookedProducts[cat][itr]){%>
-                <%for(attr in bookedProducts[cat][itr][prod]){%>
-                    <%=attr%>: <%=bookedProducts[cat][itr][prod][attr]%><br>
-                <%}%> 
-                   <!--for each products add buttons  -->
-                   <!-- button for transcation completed and buyer didnt show up -->
-                    <button class="ifSold" onclick="Sold('<%=prod%>','<%=itr%>','<%=cat%>')">Sold</button>
-                    <button class="ifSold" onclick="notSold('<%=prod%>','<%=itr%>','<%=cat%>')">Not Sold</button>
-                    <br>
+                <div class="Booking_Posts">
+                    <div class="leftcl">
+                        <div><span class="heading">ITEM:</span>
+                            <%=bookedProducts[cat][itr][prod]['NAME']%>
+                        </div>
+                        <%if('SIZE' in bookedProducts[cat][itr][prod]){%>
+                        <div><span class="heading">SIZE:</span>
+                            <%=bookedProducts[cat][itr][prod]['SIZE']%>
+                        </div>
+                        <%}%>
+                        <%if('WEIGHT' in bookedProducts[cat][itr][prod]){%>
+                        <div><span class="heading">WEIGHT:</span>
+                            <%=bookedProducts[cat][itr][prod]['WEIGHT']%>
+                        </div>
+                        <%}%>
+                        <div><span class="heading">QTY:</span>
+                            <%=bookedProducts[cat][itr][prod]['QTY']%>
+                        </div>
+                        <div><span class="heading">PRICE TO COLLECT:</span>
+                            <%=bookedProducts[cat][itr][prod]['Amount_to_retrieve']%>
+                        </div>
+                    </div>
+                    <div class="rightcl">
+                        <div><span class="heading">BUYER:</span>
+                            <%=bookedProducts[cat][itr][prod]['Buyer']%>
+                        </div>
+                        <div><span class="heading">DATE AND TIME OF BOOKING:</span>
+                            <%=bookedProducts[cat][itr][prod]['Time_Of_Booking']%> 
+                            <%=bookedProducts[cat][itr][prod]['Date_Of_Booking']%>
+                        </div>
+                        <!--for each products add buttons  -->
+                        <!-- button for transcation completed and buyer didnt show up -->
+                        <button class="ifSold" onclick="Sold('<%=prod%>','<%=itr%>','<%=cat%>')">Sold</button>
+                        <button class="ifSold" onclick="notSold('<%=prod%>','<%=itr%>','<%=cat%>')">Not Sold</button>
+                    </div>
+                </div>
+                   
             <%}%>    
         <%}%>   
     <%}%>   

@@ -80,16 +80,29 @@ function notSold(prodName, buyerId, cat) {
             //the object to be updated
 
             var sizeObj = { 'QTY': sizestring }
+            //update count for seller-wise
             firebase.database().ref(sellerStore).update(sizeObj, function (err) {
+                //update count global stock
                 firebase.database().ref(prodStore).update(sizeObj, function (err) {
+                    //put obj as nold Sold in sales
                     firebase.database().ref(sellerNotSold).set(bookedObj,function(err){
+                        //remove the obj from booking tab
                         firebase.database().ref("Booking/" + uid + "/" + cat + "/" + buyerId + "/" + prodName).set(null, function (err) {
-                            document.getElementById("overlay").style.display = "none";
-                            alert("product removed from bookings");
-                            location.reload();
+                            //Obtain buyer's booked product
+                            firebase.database().ref("Booked_Products/" + buyerId + "/" + prodName).once('value', function (snapi) {
+                                buyerBookedObj = snapi.val();
+                                //adding buyer's booked product to buyer's not bought
+                                firebase.database().ref("sales/buyer_wise/"+buyerId+"/not_bought/"+prodName).set(buyerBookedObj,function(err){
+                                    //removing product from buyer's booked product
+                                    firebase.database().ref("Booked_Products/" + buyerId + "/" + prodName).set(null,function(err){
+                                        document.getElementById("overlay").style.display = "none";
+                                        alert("product removed from bookings");
+                                        location.reload();
+                                    })
+                                })  
+                            })
                         })
                     })
-
                 })
             });
         })  
