@@ -134,15 +134,13 @@ function add_product() {
     const task = ref.child(file_name).put(file,metadata);
     task.then( snap => snap.ref.getDownloadURL())
     .then(url => {
-        console.log("hello");
         obj_for_prod['URL'] = url;
         obj_for_seller['URL'] = url;
         
         
         if('DISCOUNT' in obj_for_prod ){
         firebase.database().ref(promotedprod).set(obj_for_prod,function(err){
-            firebase.database().ref(promoteduser).set(obj_for_seller, function (err) {
-                console.log("hello1");              
+            firebase.database().ref(promoteduser).set(obj_for_seller, function (err) {          
                 document.getElementById("photo").value = null;
                 document.getElementById("overlay").style.display = "none";  
             });
@@ -151,7 +149,6 @@ function add_product() {
         }else{
         firebase.database().ref(produpdate).set(obj_for_prod,function(err){
             firebase.database().ref(userupdate).set(obj_for_seller,function(err){
-                console.log("hello2");
                 document.getElementById("photo").value = null;
                 document.getElementById("overlay").style.display = "none";
             });   

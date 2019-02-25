@@ -44,7 +44,6 @@ function fireUpdate() {
     var localObj = {};
     for (key in productObject) {
         if (key != 'URL' && key != 'CATEGORY' && key != 'NAME' && key!='PRODUCT') {
-            console.log(key);
             var changedVal = document.getElementById(key).value;
             if (changedVal != productObject[key])
                 localObj[key] = changedVal;
@@ -117,7 +116,6 @@ function canceli() {
 //return product Object with feilds that can be updated
 function createObject(productArray) {
     var localArrKeys = [];
-    var localArrVal = [];
     var object = {};
     var separated = productArray.split(",");
     if(separated[0]=="promoted"){
