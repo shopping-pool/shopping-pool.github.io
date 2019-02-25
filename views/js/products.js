@@ -43,7 +43,8 @@ function deleter(product) {
 function fireUpdate() {
     var localObj = {};
     for (key in productObject) {
-        if (key != 'URL' && key != 'CATEGORY' && key != 'NAME') {
+        if (key != 'URL' && key != 'CATEGORY' && key != 'NAME' && key!='PRODUCT') {
+            console.log(key);
             var changedVal = document.getElementById(key).value;
             if (changedVal != productObject[key])
                 localObj[key] = changedVal;
