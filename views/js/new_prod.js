@@ -33,7 +33,7 @@
         addform.innerHTML = "";
     else if (category == "Clothing" || category == "Footwear")
         addform.innerHTML = prod_name + gender + size + qty_price +color+ discount+image + submit;
-    else if (category == "electronic accessories" || category == "home and life-style")
+    else if (category == "electronic-accessories" || category == "home-and-life-style")
         addform.innerHTML = prod_name + size + qty_price + color + discount + image + submit;
     else if (category == "Groceries")
         addform.innerHTML = prod_name + weight + qty_price + discount +image + submit;
@@ -95,7 +95,7 @@ function add_product() {
         document.getElementById("color").value = "";
   
     }
-    if (category == "electronic accessories" || category == "home and life-style") {
+    if (category == "electronic-accessories" || category == "home-and-life-style") {
         let size = document.getElementById("size").value;
         let color = document.getElementById("color").value;
         obj_for_seller['SIZE'] = size;
