@@ -1,3 +1,7 @@
+.noItems{
+    margin: 100px auto;
+    width: max-content;
+}
 body{
     font-size: 14px;
 }

@@ -4,9 +4,9 @@
 <!-- posted jobs list  remove update-->
 <div class="col-sm-7">
     <div class="list">
-        <h4>AD POSTINGS</h4>
+        <h4 >AD POSTINGS</h4>
         <%if(advert==null){%>
-           <div>No current Ads to show</div> 
+           <h6 class="noItems">No current Ads to show</h6> 
         <%}else{%>
             <%for(ad in advert){%>
                 <div class="adPosts">
@@ -22,7 +22,7 @@
     <div class="list ">
         <h4>JOB POSTINGS</h4>
         <%if(job==null){%>
-            No current Vacancies to show
+            <h6 class="noItems">No current Vacancies to show</h6>
         <%}else{%>
             <table id="jobHeader">
                 <tr>
