@@ -27,6 +27,10 @@ For all the offline shoppers who still want to touch and feel the product before
 * Express
 * EJS
 * Firebase 
+* PayPal API
+* Google Maps : Geocoding API
+* Google Maps : Reverse Geocoding API
+* Bootstrap
 * Heroku CLI
 ```
 
