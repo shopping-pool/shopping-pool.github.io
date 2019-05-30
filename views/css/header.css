@@ -29,6 +29,9 @@ body{
 
 
 /* side nav styles */
+.row{
+    height: 91%;
+}
 .row .col-sm-2{
     padding: 0;
 }
@@ -63,4 +66,7 @@ body{
     text-align: right;
 }
 .navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
-.navbar {max-height:60px !important}
+.navbar {
+    height:9% !important;
+    min-height: max-content;
+}

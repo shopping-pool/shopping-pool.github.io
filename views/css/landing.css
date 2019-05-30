@@ -8,8 +8,12 @@ html,body{
     padding: 0;
     margin: 0;
 }
-
-
+.container{
+    max-width: 100%;
+}
+.row{
+    margin:0 7%;
+}
 #main {
 	background: linear-gradient(to bottom, rgba(0,0,0,0.66) 100%, transparent), url("https://firebasestorage.googleapis.com/v0/b/shoppingpool-5c28d.appspot.com/o/landing.jpg?alt=media&token=47f37300-2e3e-4abd-8258-a91c60a8a3ea");
 	background-size: cover, cover;
@@ -54,12 +58,14 @@ h1:after {
 
 h1:before {
 	top: 0;
-	left: 0;
+    left: 0;
+    background-image: linear-gradient(to left, #ffffff, #f4e3f9, #f9c4e4, #ffa2bd, #ff8486, #fe7a69, #f8734a, #ed7023, #ed7023, #ed7023, #ed7023, #ed7023);
 }
 
 h1:after {
 	bottom: 0;
-	right: 0;
+    right: 0;
+    background-image: linear-gradient(to right, #ffffff, #f4e3f9, #f9c4e4, #ffa2bd, #ff8486, #fe7a69, #f8734a, #ed7023, #ed7023, #ed7023, #ed7023, #ed7023);
 }
 
 .is-loading h1:before,
@@ -97,7 +103,7 @@ h1:after {
     border-bottom: solid 2px #ed7023;
     width: 80%;
     margin:10% 0 0 10%;
-    font-size: 25px;
+    font-size: 20px;
 }
 #box input[type = button]{ 
     margin: 10% 25%;
@@ -106,6 +112,7 @@ h1:after {
     background:white;
     color: #ed7023;
     transition: all ease 0.7s;
+    font-size: 25px;
 }
 #box input[type = button]:hover{
      background:#ed7023;

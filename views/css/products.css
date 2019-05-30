@@ -180,7 +180,7 @@ form .modal-input{
 .center{
     text-align: center;
 }
-form input[type = "button"]{
+input[type = "button"]{
     border: none;
     margin : 0 auto;
     background: white;
@@ -189,14 +189,15 @@ form input[type = "button"]{
     margin: 20px 20px 0 0;
     background: limegreen;
 }
-form input[type = "button"]:hover{
+input[type = "button"]:hover{
     background: white;
     color: limegreen; 
 }
-#cancel{
+input[type = "button"].closeModal{
+    color: white;
     background: rgb(255, 72, 72);
 }
-#cancel:hover{
+input[type = "button"].closeModal:hover{
     background: white;
     color: red;
 }

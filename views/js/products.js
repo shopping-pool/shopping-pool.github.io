@@ -3,7 +3,7 @@ var span = document.getElementsByClassName("close")[0];
 var updateText = document.getElementById('updateText');
 var productObject = {};
 var uid,produpdate,userupdate;
-
+var yes = 0;
 
 function update(product) {
     productObject = createObject(product);
@@ -14,7 +14,7 @@ function update(product) {
         if (key != 'URL' && key != 'CATEGORY' && key != 'NAME' && key !='PRODUCT')
             text += '<label class = "tag">' + key + '</label><input type = "text" class ="modal-input" id ="' + key + '" value = "' + productObject[key] + '"><br>';
     }
-    text += '<div class ="center"><input type="button" onclick ="fireUpdate()" value ="Update"> <input type = "button"  id = "cancel" onclick = "canceli()" value ="Cancel"></div></form>';
+    text += '<div class ="center"><input type="button" onclick ="fireUpdate()" value ="Update"> <input type = "button"  class = "closeModal" onclick = "canceli()" value ="Cancel"></div></form>';
     updateText.innerHTML = text;
 
 };
@@ -22,21 +22,29 @@ function update(product) {
 
 //function to delete product from db
 function deleter(product) {
+    modal.style.display = "block";
+    var text ='<h3>Confirm Delete</h3><br>';
+    text += '<div class ="center"><input type="button" onclick = "setYes(\''+product+'\')" value ="Delete"> <input type = "button"  class = "closeModal" onclick = "canceli()" value ="Cancel"></div>';
+    updateText.innerHTML = text;
+}
+//function to confirm delete
+function setYes(product){
     productObject = createObject(product);
     var uid = firebase.auth().currentUser.uid;
     //delete promoted project
-    if('PRODUCT' in productObject){
-        var produpdate = "promoted_products/" + productObject.CATEGORY + "/" + productObject.NAME+"_"+uid;
+    if ('PRODUCT' in productObject) {
+        var produpdate = "promoted_products/" + productObject.CATEGORY + "/" + productObject.NAME + "_" + uid;
         var userupdate = "sellers/seller_wise/" + uid + "/promoted/" + productObject.CATEGORY + "/" + productObject.NAME;
-    }else{
-        produpdate = "categories/" + productObject.CATEGORY + "/" + productObject.NAME+"_"+uid;
+    } else {
+        produpdate = "categories/" + productObject.CATEGORY + "/" + productObject.NAME + "_" + uid;
         userupdate = "sellers/seller_wise/" + uid + "/" + productObject.CATEGORY + "/" + productObject.NAME;
     }
-    firebase.database().ref().child(userupdate).set(null,function(err){
-    firebase.database().ref().child(produpdate).set(null, function (err) {
-        location.reload();
-    });
-});
+    firebase.database().ref().child(userupdate).set(null, function (err) {
+        firebase.database().ref().child(produpdate).set(null, function (err) {
+            location.reload();
+        });
+    })
+    setTimeout(()=>canceli(),500);
 }
 
 //function to update value in db
@@ -91,6 +99,7 @@ function fireUpdate() {
             });
         })
     }
+    setTimeout(()=>{canceli()},500);
    
 }
 //close btn for modal

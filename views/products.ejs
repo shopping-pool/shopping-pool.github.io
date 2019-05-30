@@ -17,8 +17,9 @@
         <% var f=0%>
         <% var len =0%>
 
-        <%if(products == null)%>
+        <%if(products == null){%>
             <h1 class="noItems">Add New products.</h1>
+        <%}%>    
         <%if(products!= null && 'promoted' in products){%>
         <table id="info">
             <tr>
