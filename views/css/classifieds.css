@@ -46,6 +46,10 @@ form input[type = text]{
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }
+.row{
+    height: auto;
+    max-height: 91%;
+}
 
 .req{
   color: red;

@@ -7,6 +7,7 @@ $(document).ready(function () {
 });
 var i = 0;
 function whenclicked() {
+    document.getElementById("overlay").style.display = "block"; 
     var name = document.getElementById("name").value;
     var email = document.getElementById("email").value;
     var password = document.getElementById('pass').value;
@@ -34,11 +35,14 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 function e_login(email, password) {
     console.log("old user");
+     
     firebase.auth().signInWithEmailAndPassword(email, password).then((data) =>{
+        document.getElementById("overlay").style.display = "none";  
         window.location.href = data.user.uid;
     })
         .catch(function (error) {
-            console.log(error);
+            document.getElementById("overlay").style.display = "none"; 
+            alert("Something went wrong,please try again.");
         });
         
 }
@@ -51,13 +55,20 @@ function e_signIn(name, email, password) {
                 email: email
             },function(err){
                 if(err)
-                    console.log(err)
+                    {
+                        document.getElementById("overlay").style.display = "none"; 
+                        alert("Error,please try again.");
+                    }
                 else 
-                    window.location.href = data.user.uid;    
+                    {
+                    document.getElementById("overlay").style.display = "none"; 
+                        window.location.href = data.user.uid;
+                    }    
             })
             
         })
         .catch((error) => {
-            alert(error.message);
+            document.getElementById("overlay").style.display = "none"; 
+            alert("Error,please try again.");
         });
 }
