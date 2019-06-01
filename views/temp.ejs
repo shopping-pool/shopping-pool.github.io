@@ -1,66 +1,80 @@
 <% include ./partials/header %>
 <link rel="stylesheet" href="css/temp.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+<script src="js/auth.js"></script>
 <div id="overlay">
     <div class="spinner">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>
     </div>
-</div>
-<div id = "showBookings" class ="col-sm-10">
-    <%for(cat in bookedProducts){%>
-        <%for(itr in bookedProducts[cat]){%>
-            <%for(prod in bookedProducts[cat][itr]){%>
-                <div class="Booking_Posts">
-                    <div class="leftcl">
-                        <div><span class="heading">ITEM:</span>
-                            <%=bookedProducts[cat][itr][prod]['NAME']%>
-                        </div>
-                        <%if('SIZE' in bookedProducts[cat][itr][prod]){%>
-                        <div><span class="heading">SIZE:</span>
-                            <%=bookedProducts[cat][itr][prod]['SIZE']%>
-                        </div>
-                        <%}%>
-                        <%if('WEIGHT' in bookedProducts[cat][itr][prod]){%>
-                        <div><span class="heading">WEIGHT:</span>
-                            <%=bookedProducts[cat][itr][prod]['WEIGHT']%>
-                        </div>
-                        <%}%>
-                        <div><span class="heading">QTY:</span>
-                            <%=bookedProducts[cat][itr][prod]['QTY']%>
-                        </div>
-                        <div><span class="heading">PRICE TO COLLECT:</span>
-                            <%=bookedProducts[cat][itr][prod]['Amount_to_retrieve']%>
-                        </div>
-                    </div>
-                    <div class="rightcl">
-                        <div><span class="heading">BUYER:</span>
-                            <%=bookedProducts[cat][itr][prod]['Buyer_Name']%>
-                        </div>
-                        <div><span class="heading">DATE AND TIME OF BOOKING:</span>
-                            <%=bookedProducts[cat][itr][prod]['Time_Of_Booking']%> 
-                            <%=bookedProducts[cat][itr][prod]['Date_Of_Booking']%>
-                        </div>
-                        <!--for each products add buttons  -->
-                        <!-- button for transcation completed and buyer didnt show up -->
-                        <button class="ifSold" onclick="Sold('<%=prod%>','<%=itr%>','<%=cat%>')">Sold</button>
-                        <button class="ifSold" onclick="notSold('<%=prod%>','<%=itr%>','<%=cat%>')">Not Sold</button>
-                    </div>
-                </div>
-                   
-            <%}%>    
-        <%}%>   
-    <%}%>   
+</div>  
+<div class ="col-sm-10">
+    <div id = "showBookings">
+        
+    </div>
+    <audio id="notification">
+        <source src="https://firebasestorage.googleapis.com/v0/b/shoppingpool-5c28d.appspot.com/o/sandal_footwear_fixed%2Fto-the-point.mp3?alt=media&token=a78b1c38-5ae2-4094-b7cf-e9f5e97630af" type="audio/mpeg">
+        <source src="https://firebasestorage.googleapis.com/v0/b/shoppingpool-5c28d.appspot.com/o/sandal_footwear_fixed%2Fto-the-point.ogg?alt=media&token=b719ba27-e8a3-4d35-9448-f6d8fa87de8f" type="audio/ogg">
+        <embed hidden="true" autostart="false" loop="false" src="https://firebasestorage.googleapis.com/v0/b/shoppingpool-5c28d.appspot.com/o/sandal_footwear_fixed%2Fto-the-point.mp3?alt=media&token=a78b1c38-5ae2-4094-b7cf-e9f5e97630af" type="audio/mpeg">
+    </audio>
+ 
 </div>
 
 <!-- closed row -->
 </div>
 <!-- closed container -->
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
-<script src="js/auth.js"></script>
+
 <script src="js/temp.js"></script>
+<script type="text/javascript">
+    var selller = <%- JSON.stringify(seller) %>;
+    var text;
+    firebase.database().ref("Booking/" + selller.id).on('value', function (snapi) {
+        console.log(selller.id);
+        bookedProducts = snapi.val();  
+        text = "";
+        if (bookedProducts == null) text+='<h1 class="noItems">No new Orders.</h1>';
+        else{
+        for (cat in bookedProducts){
+            for (itr in bookedProducts[cat]){
+                for (prod in bookedProducts[cat][itr]){
+                    text+= '<div class="Booking_Posts"><div class="leftcl"><div><span class="heading">ITEM:</span>'+bookedProducts[cat][itr][prod]['NAME']+"</div>";
+                    if('SIZE' in bookedProducts[cat][itr][prod]){
+                        text+='<div><span class="heading">SIZE:</span>'+bookedProducts[cat][itr][prod]['SIZE']+'</div>';
+                    }
+                    if('WEIGHT' in bookedProducts[cat][itr][prod]){
+                        text +='<div><span class="heading">WEIGHT:</span>'+bookedProducts[cat][itr][prod]['WEIGHT']+'</div>';
+                    }
+                    text +='<div><span class="heading">QTY:</span>'+bookedProducts[cat][itr][prod]['QTY']+'</div>';
+                    text +='<div><span class="heading">PRICE TO COLLECT:</span>'+bookedProducts[cat][itr][prod]['Amount_to_retrieve']+'</div></div>';
+                    text +='<div class="rightcl"><div><span class="heading">BUYER:</span>'+bookedProducts[cat][itr][prod]['Buyer_Name']+'</div>';
+                    text +='<div><span class="heading">DATE AND TIME OF BOOKING:</span>'+bookedProducts[cat][itr][prod]['Time_Of_Booking']+bookedProducts[cat][itr][prod]['Date_Of_Booking']+'</div>';
+                    //         <!--for each products add buttons  -->
+                    // <!-- button for transcation completed and buyer didnt show up -->
+                    text +='<button class="ifSold" onclick="Sold( \''+prod+'\',\''+itr+'\',\''+cat+'\')">Sold</button>';
+                    text +='<button class="ifSold" onclick="notSold(\''+prod+'\',\''+itr+'\',\''+cat+'\')">Not Sold</button></div></div>';
+                }
+            }
+        }
+        document.getElementById("notification").play();
+    }
+        document.getElementById("showBookings").innerHTML = text;
+        text = "";
+        
+        
+        
+    })
+    // function playSound() {
+    //         var mp3FileName = "https://firebasestorage.googleapis.com/v0/b/shoppingpool-5c28d.appspot.com/o/sandal_footwear_fixed%2Fto-the-point.mp3?alt=media&token=a78b1c38-5ae2-4094-b7cf-e9f5e97630af";
+    //         var oggFileName = "https://firebasestorage.googleapis.com/v0/b/shoppingpool-5c28d.appspot.com/o/sandal_footwear_fixed%2Fto-the-point.ogg?alt=media&token=b719ba27-e8a3-4d35-9448-f6d8fa87de8f"
+    //         var mp3Source = '<source src="' + mp3FileName + '" type="audio/mpeg">';
+    //         var oggSource = '<source src="' + oggFileName + '" type="audio/ogg">';
+    //         var embedSource = '<embed hidden="true" autostart="true" loop="false" src="' + mp3FileName + '">';
+    //         document.getElementById("sound").innerHTML = '<audio autoplay="autoplay">' + mp3Source + oggSource + embedSource + '</audio>';
+    //     }
+</script>
 </body>
 
 </html>

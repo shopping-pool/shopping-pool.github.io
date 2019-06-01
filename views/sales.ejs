@@ -13,32 +13,32 @@
                 <%for(prod in sales[cat]){%>
                     <div class="Sales_Posts">
                         <div class="leftcl">
-                            <div><span class="heading">ITEM:</span>
+                            <div class="posts"><span class="heading">ITEM:</span>
                                 <%=sales[cat][prod]['NAME']%>
                             </div>
                             <%if('SIZE' in sales[cat][prod]){%>
-                            <div><span class="heading">SIZE:</span>
+                            <div class="posts"><span class="heading">SIZE:</span>
                                 <%=sales[cat][prod]['SIZE']%>
                             </div>
                             <%}%>
                             <%if('WEIGHT' in sales[cat][prod]){%>
-                            <div><span class="heading">WEIGHT:</span>
+                            <div class="posts"><span class="heading">WEIGHT:</span>
                                 <%=sales[cat][prod]['WEIGHT']%>
                             </div>
                             <%}%>
-                            <div><span class="heading">QTY:</span>
+                            <div class="posts"><span class="heading">QTY:</span>
                                 <%=sales[cat][prod]['QTY']%>
                             </div>
                             
                         </div>
                         <div class="rightcl">
-                            <div><span class="heading">CUSTOMER PAID:</span>
+                            <div class="posts"><span class="heading">CUSTOMER PAID:</span>
                                 <%=sales[cat][prod]['Amount_retrieved']%>
                             </div>
-                            <div><span class="heading">BUYER:</span>
+                            <div class="posts"><span class="heading">BUYER:</span>
                                 <%=sales[cat][prod]['Buyer_Name']%>
                             </div>
-                            <div><span class="heading">DATE AND TIME OF BOOKING:</span>
+                            <div class="posts"><span class="heading">DATE AND TIME OF BOOKING:</span>
                                 <%=sales[cat][prod]['Time_Of_Booking']%>
                                 <%=sales[cat][prod]['Date_Of_Booking']%>
                             </div>
@@ -55,32 +55,32 @@
                 <%for(prod in sales['not_Sold'][cat]){%>
                 <div class="Sales_Posts">
                     <div class="leftcl">
-                        <div><span class="heading">ITEM:</span>
+                        <div class="posts"><span class="heading">ITEM:</span>
                             <%=sales['not_Sold'][cat][prod]['NAME']%>
                         </div>
                         <%if('SIZE' in sales['not_Sold'][cat][prod]){%>
-                        <div><span class="heading">SIZE:</span>
+                        <div class="posts"><span class="heading">SIZE:</span>
                             <%=sales['not_Sold'][cat][prod]['SIZE']%>
                         </div>
                         <%}%>
                         <%if('WEIGHT' in sales['not_Sold'][cat][prod]){%>
-                        <div><span class="heading">WEIGHT:</span>
+                        <div class="posts"><span class="heading">WEIGHT:</span>
                             <%=sales['not_Sold'][cat][prod]['WEIGHT']%>
                         </div>
                         <%}%>
-                        <div><span class="heading">QTY:</span>
+                        <div class="posts"><span class="heading">QTY:</span>
                             <%=sales['not_Sold'][cat][prod]['QTY']%>
                         </div>
                 
                     </div>
                     <div class="rightcl">
-                        <div><span class="heading">CUSTOMER PAID:</span>
+                        <div class="posts"><span class="heading">CUSTOMER PAID:</span>
                             <%=sales['not_Sold'][cat][prod]['Amount_to_retrieve']%>
                         </div>
-                        <div><span class="heading">BUYER:</span>
+                        <div class="posts"><span class="heading">BUYER:</span>
                             <%=sales['not_Sold'][cat][prod]['Buyer_Name']%>
                         </div>
-                        <div><span class="heading">DATE AND TIME OF BOOKING:</span>
+                        <div class="posts"><span class="heading">DATE AND TIME OF BOOKING:</span>
                             <%=sales['not_Sold'][cat][prod]['Time_Of_Booking']%>
                             <%=sales['not_Sold'][cat][prod]['Date_Of_Booking']%>
                         </div>
