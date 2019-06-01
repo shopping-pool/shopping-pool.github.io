@@ -1,5 +1,6 @@
 function addShopName(){
     var shopName = document.getElementById("shopName").value;
+    document.getElementById("shopName").style.cursor = "wait";
     var id = firebase.auth().currentUser.uid;
     var updateObj = "sellers/sellers-list/" + id;
     if(shopName.length!=0)
@@ -7,7 +8,13 @@ function addShopName(){
         firebase.database().ref(updateObj).update({
             'Shop-name':shopName
         },function(err){
-            console.log("updated");
+            //  console.log("updated");
+            if (err) {
+                alert("please try again");
+                document.getElementById("shopName").style.cursor = "default";
+            }
+            else location.reload();
+            
         })
     }
 }

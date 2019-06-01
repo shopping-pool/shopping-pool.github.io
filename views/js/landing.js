@@ -62,7 +62,7 @@ function e_signIn(name, email, password) {
                 else 
                     {
                     document.getElementById("overlay").style.display = "none"; 
-                        window.location.href = data.user.uid;
+                        window.location.href = data.user.uid+"/profile";
                     }    
             })
             
