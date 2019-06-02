@@ -24,16 +24,12 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 app.get("/:id",(req,res)=>{
     id = req.params.id;
     firebase.database().ref("sellers/sellers-list/"+id ).once('value',function(snap){
-        //send booking data as well
-        firebase.database().ref("Booking/" + id).once('value', function (snapi) {      
+        //send booking data as well    
         seller = snap.val();
         seller['id'] = id;
         console.log(seller);  
-        //add booking data to obj
-        bookedProducts = snapi.val();  
-        res.render('temp', { seller: seller ,bookedProducts:bookedProducts});
-        });
-    })   
+        res.render('temp', { seller: seller });
+        });  
 });
 // product routes
 app.get("/:id/products", (req, res) => { 
