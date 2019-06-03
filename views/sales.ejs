@@ -15,11 +15,18 @@
                 <%for(var i=0;i<(Object.keys(sales).length);i++){%>
                 <td>
                     <%if(Object.keys(sales)[i]!='not_Sold'){%>
-                    <%=Object.keys(sales[Object.keys(sales)[i]]).length%>
+                    <!-- <%=Object.keys(sales[Object.keys(sales)[i]]).length%> -->
+                    <%var d = 0%>
+                    <%for(prod in sales[Object.keys(sales)[i]]){%>
+                        <%d =d+parseInt(sales[Object.keys(sales)[i]][prod]['QTY'])%>
+                    <%}%>
+                    <%=d%>    
                     <%}else{%>
                     <% var a=0 %>
                         <%for(cat in sales['not_Sold']){%>
-                        <% a=a+Object.keys(sales['not_Sold'][cat]).length%>
+                            <%for(prod in sales['not_Sold'][cat]){%>
+                                <% a=a+parseInt(sales['not_Sold'][cat][prod]['QTY'])%>
+                            <%}%>    
                         <%}%>
                     <%=a%>   
                     <%}%>   
