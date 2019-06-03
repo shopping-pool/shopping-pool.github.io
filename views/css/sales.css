@@ -30,3 +30,15 @@ h6 span {
     background:#fff; 
     padding:0 5px; 
 }
+table{
+    width: 80%;
+    margin: 20px auto;
+    
+}
+table,tr{
+    border: 1px solid black;
+}
+td{
+    padding: 10px;
+    text-align: center;
+}

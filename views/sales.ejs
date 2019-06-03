@@ -5,6 +5,28 @@
     <h1 class="noItems">No records to show</h1>
 <%}else{%>
     <div id="showSales" class="col-sm-10">
+        <table>
+            <tr>
+                <%for(var i=0;i<(Object.keys(sales).length);i++){%>
+                <td><%=Object.keys(sales)[i]%></td>
+                <%}%> 
+                </tr>
+            <tr>
+                <%for(var i=0;i<(Object.keys(sales).length);i++){%>
+                <td>
+                    <%if(Object.keys(sales)[i]!='not_Sold'){%>
+                    <%=Object.keys(sales[Object.keys(sales)[i]]).length%>
+                    <%}else{%>
+                    <% var a=0 %>
+                        <%for(cat in sales['not_Sold']){%>
+                        <% a=a+Object.keys(sales['not_Sold'][cat]).length%>
+                        <%}%>
+                    <%=a%>   
+                    <%}%>   
+                </td>
+                <%}%>
+            </tr>
+        </table>
         <%for(cat in sales){%>
             <%if(cat!='not_Sold'){%>
                 <div class="category">
